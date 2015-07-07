@@ -24,7 +24,7 @@ module.exports = {
         path: path.join( __dirname, 'build' ),
         filename: 'api.js'
     },
-    devtool: '#eval-source-map',
+    devtool: '#cheap-module-source-map',
     debug: true,
     externals: nodeModules,
     node: {
