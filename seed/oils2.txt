@@ -1,0 +1,150 @@
+name ins iodine lauric linoleic linolenic myristic oleic palmitic ricinoleic stearic sap hardness cleansing bubbly creamy condition
+"Abyssinian Oil" 70 98 0 11 4 0 18 3 0 2 0.168 5 0 0 5 33
+"Almond Butter" 118 70 0 16 0 1 58 9 0 15 0.188 25 1 1 24 74
+"Almond Oil, sweet" 97 99 0 18 0 0 71 7 0 0 0.195 7 0 0 7 89
+"Aloe Butter" 241 9 45 2 0 18 7 8 0 3 0.24 74 63 63 11 9
+"Andiroba Oil,karaba,crabwood" 120 68 0 9 0 0 51 28 0 8 0.188 36 0 0 36 60
+"Apricot Kernal Oil" 91 100 0 27 0 0 66 6 0 0 0.195 6 0 0 6 93
+"Argan Oil" 95 95 0 34 1 1 46 14 0 0 0.191 15 1 1 14 81
+"Avocado butter" 120 67 0 6 2 0 53 21 0 10 0.187 31 0 0 31 61
+"Avocado Oil" 99 86 0 12 0 0 58 20 0 2 0.186 22 0 0 22 70
+"Babassu Oil" 230 15 50 0 0 20 10 11 0 4 0.245 85 70 70 15 10
+"Baobab Oil" 125 75 0 28 2 1 37 24 0 4 0.2 29 1 1 28 67
+"Beeswax" 84 10 0 0 0 0 0 0 0 0 0.094 0 0 0 0 0
+"Black Cumin Seed Oil, nigella sativa" 62 133 0 60 1 0 22 13 0 3 0.195 16 0 0 16 83
+"Black Current Seed Oil" 12 178 0 46 29 0 13 6 0 2 0.19 8 0 0 8 88
+"Borage Oil" 55 135 0 43 5 0 20 10 0 4 0.19 14 0 0 14 68
+"Brazil Nut Oil" 90 100 0 36 0 0 39 13 0 11 0.19 24 0 0 24 75
+"Broccoli Seed Oil, Brassica Oleracea" 67 105 0 11 9 0 14 3 0 1 0.172 4 0 0 4 34
+"Buriti Oil" 153 70 0 7 1 0 71 17 0 2 0.223 19 0 0 19 79
+"Camelina Seed Oil" 44 144 0 19 45 0 24 6 0 2 0.188 8 0 0 8 88
+"Camellia Oil, Tea Seed" 115 78 0 8 0 0 77 9 0 2 0.193 11 0 0 11 85
+"Candelilla Wax" 12 32 0 0 0 0 0 0 0 0 0.044 0 0 0 0 0
+"Canola Oil" 56 110 0 21 9 0 61 4 0 2 0.186 6 0 0 6 91
+"Canola Oil, high oleic" 90 96 0 12 4 0 74 4 0 2 0.186 6 0 0 6 90
+"Carrot Seed Oil, cold pressed" 0 56 0 13 0 0 80 4 0 0 0.144 4 0 0 4 93
+"Castor Oil" 95 86 0 4 0 0 4 0 90 0 0.18 0 0 90 90 98
+"Cherry Kern1 Oil, p. avium" 62 128 0 45 11 0 31 8 0 3 0.19 11 0 0 11 87
+"Cherry Kern2 Oil, p. cerasus" 74 118 0 40 0 0 50 6 0 3 0.192 9 0 0 9 90
+"Chicken Fat" 130 69 0 21 0 1 38 25 0 7 0.195 33 1 1 32 59
+"Cocoa Butter" 157 37 0 3 0 0 35 28 0 33 0.194 61 0 0 61 38
+"Coconut Oil, 76 deg" 258 10 48 2 0 19 8 9 0 3 0.257 79 67 67 12 10
+"Coconut Oil, 92 deg" 258 3 48 2 0 19 8 9 0 3 0.257 79 67 67 12 10
+"Coconut Oil, fractionated" 324 1 2 0 0 1 0 0 0 0 0.325 3 3 3 0 0
+"Coffee Bean Oil, green" 100 85 0 39 2 0 9 38 0 8 0.185 46 0 0 46 50
+"Coffee Bean Oil, roasted" 93 87 0 38 2 0 8 40 0 0 0.18 40 0 0 40 48
+"Cohune Oil" 175 30 51 3 0 13 18 8 0 3 0.205 75 64 64 11 21
+"Corn Oil" 69 117 0 51 1 0 32 12 0 2 0.192 14 0 0 14 84
+"Cottonseed Oil" 89 108 0 52 1 0 18 13 0 13 0.194 26 0 0 26 71
+"Cranberry Seed Oil" 40 150 0 37 32 0 23 6 0 2 0.19 8 0 0 8 92
+"Crisco, new w/palm" 82 111 0 40 6 0 28 20 0 5 0.193 25 0 0 25 74
+"Crisco, old" 115 93 0 52 0 0 18 13 0 13 0.192 26 0 0 26 70
+"Cupuacu Butter" 153 39 0 2 0 0 42 8 0 35 0.192 43 0 0 43 44
+"Duck Fat, flesh and skin" 122 72 0 13 1 1 44 26 0 9 0.194 36 1 1 35 58
+"Emu Oil" 128 60 0 8 0 0 47 23 0 9 0.19 32 0 0 32 55
+"Evening Primrose Oil" 30 160 0 80 9 0 0 0 0 0 0.19 0 0 0 0 89
+"Flax Oil, linseed" -6 180 0 13 50 0 27 6 0 3 0.19 9 0 0 9 90
+"Ghee, any bovine" 191 30 4 2 1 11 19 28 0 12 0.227 55 15 15 40 22
+"Goose Fat" 130 65 0 10 0 0 54 21 0 6 0.192 27 0 0 27 64
+"Grapeseed Oil" 66 131 0 68 0 0 20 8 0 4 0.181 12 0 0 12 88
+"Hazelnut Oil" 94 97 0 10 0 0 75 5 0 3 0.195 8 0 0 8 85
+"Hemp Oil" 39 165 0 57 21 0 12 6 0 2 0.193 8 0 0 8 90
+"Horse Oil" 117 79 0 20 19 3 10 26 0 5 0.196 34 3 3 31 49
+"Illipe Butter" 152 33 0 0 0 0 35 17 0 45 0.185 62 0 0 62 35
+"Japan Wax" 204 11 0 0 0 1 4 80 0 7 0.215 88 1 1 87 4
+"Jatropha Oil, soapnut seed oil" 91 102 0 34 0 0 44 9 0 7 0.193 16 0 0 16 78
+"Jojoba Oil (a Liquid Wax Ester)" 11 83 0 0 0 0 12 0 0 0 0.092 0 0 0 0 12
+"Karanja Oil" 98 85 0 15 0 0 58 6 0 6 0.183 12 0 0 12 73
+"Kokum Butter" 155 35 0 1 0 0 36 4 0 56 0.19 60 0 0 60 37
+"Kpangnan Butter" 149 42 0 1 0 0 49 6 0 44 0.191 50 0 0 50 50
+"Kukui nut Oil" 24 168 0 42 29 0 20 6 0 2 0.189 8 0 0 8 91
+"Lanolin liquid Wax" 83 27 0 0 0 0 0 0 0 0 0.106 0 0 0 0 0
+"Lard, Pig Tallow (Manteca)" 139 57 0 6 0 1 46 28 0 13 0.198 42 1 1 41 52
+"Laurel Fruit Oil" 124 74 25 26 1 1 31 15 0 1 0.198 42 26 26 16 58
+"Lauric Acid" 280 0 99 0 0 1 0 0 0 0 0.28 100 100 100 0 0
+"Linseed Oil, flax" -6 180 0 13 50 0 27 6 0 3 0.19 9 0 0 9 90
+"Loofa Seed Oil, Luffa cylinderica" 79 108 0 47 0 0 30 9 0 18 0.187 27 0 0 27 77
+"Macadamia Nut Butter" 118 70 0 3 1 1 56 6 0 12 0.188 19 1 1 18 60
+"Macadamia Nut Oil" 119 76 0 2 0 0 59 9 0 5 0.195 14 0 0 14 61
+"Mafura Butter, Trichilia emetica " 132 66 0 11 1 1 49 37 0 3 0.198 41 1 1 40 61
+"Mango Seed Butter" 146 45 0 3 0 0 45 7 0 42 0.191 49 0 0 49 48
+"Mango Seed Oil" 130 60 0 8 1 0 52 8 0 27 0.19 35 0 0 35 61
+"Marula Oil" 119 73 0 4 0 0 75 11 0 7 0.192 18 0 0 18 79
+"Meadowfoam Oil" 77 92 0 0 0 0 0 0 0 0 0.169 0 0 0 0 0
+"Milk Fat, any bovine" 191 30 4 2 1 11 19 28 0 12 0.227 55 15 15 40 22
+"Milk Thistle Oil" 81 115 0 64 0 0 26 7 0 2 0.196 9 0 0 9 90
+"Mink Oil" 141 55 0 0 0 0 0 0 0 0 0.196 0 0 0 0 0
+"Monoi de Tahiti  Oil" 246 9 44 2 0 16 0 10 0 3 0.255 73 60 60 13 2
+"Moringa Oil" 124 68 0 2 0 0 71 7 0 7 0.192 14 0 0 14 73
+"Mowrah Butter" 132 62 0 15 0 0 36 24 0 22 0.194 46 0 0 46 51
+"Murumuru Butter" 250 25 47 3 0 26 15 6 0 3 0.275 82 73 73 9 18
+"Mustard Oil, kachi ghani" 72 101 0 14 9 0 18 2 0 2 0.173 4 0 0 4 41
+"Myristic Acid" 246 1 0 0 0 99 0 0 0 0 0.247 99 99 99 0 0
+"Neatsfoot Oil" 90 90 0 0 0 0 0 0 0 0 0.18 0 0 0 0 0
+"Neem Seed Oil" 121 72 0 12 0 2 46 21 0 16 0.193 39 2 2 37 58
+"Nutmeg Butter" 116 46 3 0 0 83 5 4 0 0 0.1624 90 86 86 4 5
+"Oat Oil" 86 104 0 39 0 0 40 15 0 2 0.19 17 0 0 17 79
+"Oleic Acid" 110 92 0 0 0 0 99 0 0 0 0.202 0 0 0 0 99
+"Olive Oil" 105 85 0 12 1 0 69 14 0 3 0.19 17 0 0 17 82
+"Olive Oil  pomace" 104 84 0 12 2 0 69 14 0 3 0.188 17 0 0 17 83
+"Ostrich Oil" 128 97 3 17 3 1 37 26 0 6 0.1946 36 4 4 32 57
+"Palm Kernel Oil" 227 20 49 3 0 16 15 8 0 2 0.247 75 65 65 10 18
+"Palm Kernel Oil Flakes, hydrogenated" 227 20 49 0 0 17 4 8 0 16 0.247 90 66 66 24 4
+"Palm Oil" 145 53 0 10 0 1 39 44 0 5 0.199 50 1 1 49 49
+"Palm Stearin" 151 48 0 7 0 2 26 60 0 5 0.199 67 2 2 65 33
+"Palmitic Acid" 213 2 0 0 0 0 0 98 0 0 0.215 98 0 0 98 0
+"Palmolein" 142 58 0 11 0 1 43 40 0 5 0.2 46 1 1 45 54
+"Papaya seed oil, Carica papaya" 91 67 0 3 0 0 76 13 0 5 0.158 18 0 0 18 79
+"Passion Fruit Seed Oil" 47 136 0 70 1 0 15 10 0 3 0.183 13 0 0 13 86
+"Pataua (Patawa) Oil" 123 77 0 3 1 0 78 13 0 4 0.2 17 0 0 17 82
+"Peach Kernel Oil" 87 108 0 25 1 0 65 6 0 2 0.191 8 0 0 8 91
+"Peanut Oil" 99 92 0 26 0 0 56 8 0 3 0.192 11 0 0 11 82
+"Pecan Oil" 77 113 0 39 2 0 50 7 0 2 0.19 9 0 0 9 91
+"Perilla Seed Oil" -6 196 0 16 56 0 15 6 0 2 0.19 8 0 0 8 87
+"Pine Tar, lye calc only no FA" 0 0 0 0 0 0 0 0 0 0 0.06 0 0 0 0 0
+"Pistachio Oil" 92 95 0 25 0 0 63 11 0 1 0.186 12 0 0 12 88
+"Plum Kernel Oil" 96 98 0 23 0 0 68 3 0 0 0.194 3 0 0 3 91
+"Pomegranate Seed Oil" 168 22 0 7 78 0 7 3 0 3 0.19 6 0 0 6 92
+"Poppy Seed Oil" 54 140 0 69 2 0 17 10 0 2 0.194 12 0 0 12 88
+"Pracaxi (Pracachy) Seed Oil - hair conditioner" 107 68 1 2 2 1 44 2 0 2 0.175 6 2 2 4 48
+"Pumpkin Seed Oil virgin" 67 128 0 50 0 0 33 11 0 8 0.195 19 0 0 19 83
+"Rabbit Fat" 116 85 0 20 5 3 30 30 0 6 0.201 39 3 3 36 55
+"Rapeseed Oil, unrefined canola" 69 106 0 13 9 0 17 4 0 1 0.175 5 0 0 5 39
+"Raspberry Seed Oil" 24 163 0 55 26 0 13 3 0 0 0.187 3 0 0 3 94
+"Red Palm Butter" 145 53 0 10 0 1 39 44 0 5 0.199 50 1 1 49 49
+"Rice Bran Oil, refined" 87 100 0 34 2 1 38 22 0 3 0.187 26 1 1 25 74
+"Rosehip Oil" 10 188 0 46 31 0 12 4 0 2 0.187 6 0 0 6 89
+"Sacha Inchi, Plukenetia volubilis" 47 141 0 35 48 0 10 4 0 3 0.188 7 0 0 7 93
+"Safflower Oil" 47 145 0 75 0 0 15 7 0 0 0.192 7 0 0 7 90
+"Safflower Oil, high oleic" 97 93 0 15 0 0 77 5 0 2 0.19 7 0 0 7 92
+"Sal Butter" 146 39 0 2 0 0 40 6 0 44 0.185 50 0 0 50 42
+"Salmon Oil" 16 169 0 2 1 5 23 19 0 2 0.185 26 5 5 21 26
+"Saw Palmetto Extract" 185 45 29 4 1 11 35 8 0 2 0.23 50 40 40 10 40
+"Saw Palmetto Oil" 176 44 29 4 1 13 31 9 0 2 0.22 53 42 42 11 36
+"Sea Buckthorn Oil, seed" 30 165 0 36 38 0 14 7 0 3 0.195 10 0 0 10 88
+"Sea Buckthorn Oil, seed and berry" 97 86 0 10 0 0 28 30 0 1 0.183 31 0 0 31 38
+"Sesame Oil" 81 110 0 43 0 0 40 10 0 5 0.188 15 0 0 15 83
+"Shea Butter" 116 59 0 6 0 0 48 5 0 40 0.179 45 0 0 45 54
+"Shea Oil, fractionated" 102 83 0 11 0 0 73 6 0 10 0.185 16 0 0 16 84
+"SoapQuick, conventional" 153 59 13 8 1 6 42 17 5 3 0.212 39 19 24 25 56
+"SoapQuick, organic" 156 56 13 10 0 5 45 20 0 3 0.213 41 18 18 23 55
+"Soybean Oil" 61 131 0 50 8 0 24 11 0 5 0.191 16 0 0 16 82
+"Soybean, 27.5% hydrogenated" 113 78 0 7 1 0 41 9 0 15 0.191 24 0 0 24 49
+"Soybean, fully hydrogenated (soy wax)" 191 1 0 0 0 0 0 11 0 87 0.192 98 0 0 98 0
+"Stearic Acid" 196 2 0 0 0 0 0 0 0 99 0.198 99 0 0 99 0
+"Sunflower Oil" 63 133 0 70 1 0 16 7 0 4 0.189 11 0 0 11 87
+"Sunflower Oil, high oleic" 106 83 0 4 1 0 83 3 0 4 0.189 7 0 0 7 88
+"Tallow Bear" 100 92 0 9 0 2 70 7 0 3 0.1946 12 2 2 10 79
+"Tallow Beef" 147 45 2 3 1 6 36 28 0 22 0.2 58 8 8 50 40
+"Tallow Deer" 166 31 0 15 3 1 30 20 0 24 0.193 45 1 1 44 48
+"Tallow Goat" 152 40 5 2 0 11 29 23 0 30 0.192 69 16 16 53 31
+"Tallow Sheep" 156 54 4 5 0 10 26 24 0 13 0.194 51 14 14 37 31
+"Tamanu Oil, kamani" 82 111 0 38 1 0 34 12 0 13 0.208 25 0 0 25 73
+"Tucuma Seed Butter" 175 13 48 0 0 23 13 6 0 0 0.238 77 71 71 6 13
+"Ucuuba Butter" 167 38 0 5 0 0 44 0 0 31 0.205 31 0 0 31 49
+"Walmart GV Shortening, tallow, palm" 151 49 1 6 1 4 37 35 0 14 0.198 54 5 5 49 44
+"Walnut Oil" 45 145 0 60 0 0 18 7 0 2 0.189 9 0 0 9 78
+"Watermelon Seed Oil" 71 119 0 60 1 0 18 11 0 10 0.19 21 0 0 21 79
+"Wheat Germ Oil" 58 128 0 58 0 0 17 17 0 2 0.183 19 0 0 19 75
+"Yangu, cape chestnut" 97 95 0 30 1 0 45 18 0 5 0.192 23 0 0 23 76
+"Zapote seed oil, (Aceite de Sapuyul or Mamey)" 116 72 0 13 0 0 52 9 0 21 0.188 30 0 0 30 65

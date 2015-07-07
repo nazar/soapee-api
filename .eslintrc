@@ -1,0 +1,36 @@
+{
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": true,
+        "spread": true,
+        "templateStrings": true
+    },
+    "rules": {
+        "consistent-return": [0],
+        "key-spacing": [0],
+        "quotes": [1, "single", "avoid-escape"],
+        "quote-props": [1, "as-needed"],
+        "new-cap": [0],
+        "no-multi-spaces": [0],
+        "no-shadow": [0],
+        "no-unused-vars": [1],
+        "no-undef": 2,
+        "no-unused-expressions": 0,
+        "no-use-before-define": [2, "nofunc"],
+        "no-trailing-spaces": [2],
+        "eol-last": [0],
+        "no-labels": [2],
+        "indent": 2,
+        "vars-on-top": 2
+    }
+}
