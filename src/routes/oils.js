@@ -1,9 +1,9 @@
 import { Router } from 'express';
-
-import oils from 'routes/oils';
+import { index } from 'controllers/oils';
 
 let router = new Router();
 
-router.use( '/oils', oils );
+router.route('/')
+    .get( index );
 
 export default router;

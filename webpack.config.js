@@ -39,12 +39,13 @@ module.exports = {
         extensions: [ '', '.js', '.jsx' ],
         alias: {
             //application aliases
+            controllers: pathTo( 'controllers' ),
+            middleware: pathTo( 'middleware' ),
             models: pathTo( 'models' ),
-            mixins: pathTo( 'mixins' ),
-            mocks: pathTo( 'mocks' ),
+            routes: pathTo( 'routes' ),
             utils: pathTo( 'utils' ),
 
-            assets: pathTo( 'assets' )
+            db: pathTo( 'bookshelf.js' )
         }
     },
     module: {

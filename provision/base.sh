@@ -23,6 +23,7 @@ curl -L --insecure https://www.npmjs.org/install.sh | sudo bash
 # install global npm packages
 
 sudo npm install -g gulp@3.9.0
+sudo npm install -g knex@0.8.6
 
 
 # install Postgres 9.4
