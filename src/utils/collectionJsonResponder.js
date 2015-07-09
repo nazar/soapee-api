@@ -8,6 +8,6 @@ export default function ( collection, res ) {
         .catch( err => {
             res
                 .status( 500 )
-                .json( { error: true, data: { message: err.message } } );
+                .json( { error: { message: err.message } } );
         } );
 }

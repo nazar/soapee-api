@@ -3,7 +3,7 @@ var oilsSeed = require( '../seed/oils.js' );
 exports.up = function ( knex ) {
 
     return knex.schema.createTable( 'oils', function ( table ) {
-        table.increments();
+        table.increments().primary();
 
         table.string( 'name' );
         table.integer( 'version' );
@@ -12,9 +12,9 @@ exports.up = function ( knex ) {
         table.float( 'sap' );
         table.integer( 'total_saponifiable' );
 
-        table.json( 'breakdown' );
-        table.json( 'properties' );
-        table.json( 'saturations' );
+        table.json( 'breakdown', true );
+        table.json( 'properties', true );
+        table.json( 'saturations', true );
 
         table.timestamps();
     } )
