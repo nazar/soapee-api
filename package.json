@@ -17,7 +17,8 @@
         "lodash": "3.10.0",
         "knex": "0.8.6",
         "morgan": "1.6.1",
-        "pg": "4.4.0"
+        "pg": "4.4.0",
+        "sanitize-html": "1.7.0"
     },
     "devDependencies": {
         "babel-loader": "5.3.1",
