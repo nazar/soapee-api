@@ -1,4 +1,4 @@
-import {Oils} from 'models/oil';
+import { Oils } from 'models/oil';
 
 import collectionJsonResponder from 'utils/collectionJsonResponder';
 

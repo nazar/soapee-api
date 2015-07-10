@@ -43,6 +43,7 @@ module.exports = {
             middleware: pathTo( 'middleware' ),
             models: pathTo( 'models' ),
             routes: pathTo( 'routes' ),
+            services: pathTo( 'services' ),
             utils: pathTo( 'utils' ),
 
             db: pathTo( 'bookshelf.js' )

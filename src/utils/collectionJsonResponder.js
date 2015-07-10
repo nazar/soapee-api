@@ -1,5 +1,5 @@
 export default function ( collection, res ) {
-    collection
+    return collection
         .forge()
         .fetch()
         .then( data => {

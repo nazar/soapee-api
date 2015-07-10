@@ -31,6 +31,7 @@
         "eol-last": [0],
         "no-labels": [2],
         "indent": 2,
-        "vars-on-top": 2
+        "vars-on-top": 2,
+        "camelcase": [1]
     }
 }
