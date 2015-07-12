@@ -5,6 +5,7 @@ import {Verification} from 'models/verifications';
 
 export let User = bookshelf.Model.extend( {
     tableName: 'users',
+    hasTimestamps: true,
 
     initialize() {
         this.on( 'saving', this.setUserKey );
@@ -17,9 +18,7 @@ export let User = bookshelf.Model.extend( {
 
     //setters
     setUserKey() {
-        if ( !(this.get( 'key' )) ) {
-            this.set( 'key', md5( new Date().toString() ) );
-        }
+        this.set( 'key', md5( new Date().toString() ) );
     }
 } );
 

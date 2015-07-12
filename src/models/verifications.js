@@ -4,6 +4,7 @@ import {User} from 'models/users';
 
 export let Verification = bookshelf.Model.extend( {
     tableName: 'verifications',
+    hasTimestamps: true,
 
     //relations
     user() {
