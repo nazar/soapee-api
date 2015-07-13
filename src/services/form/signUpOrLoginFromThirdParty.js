@@ -79,14 +79,12 @@ function facebookDataRequester() {
 
 function googleDataRequester() {
     return new Promise( ( resolve, reject ) => {
-        console.log( 'accessToken', this.accessToken );
         request
             .get( 'https://www.googleapis.com/plus/v1/people/me' )
             .query( { access_token: this.accessToken } )
             .set( 'Accept', 'application/json' )
             .end( ( err, res ) => {
                 if ( err ) {
-                    console.log( 'err', err );
                     reject( err );
                 } else {
                     resolve( res.body );

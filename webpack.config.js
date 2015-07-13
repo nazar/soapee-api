@@ -46,7 +46,7 @@ module.exports = {
             services: pathTo( 'services' ),
             utils: pathTo( 'utils' ),
 
-            db: pathTo( 'bookshelf.js' )
+            db: pathTo( 'db' )
         }
     },
     module: {

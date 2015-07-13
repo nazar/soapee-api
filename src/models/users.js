@@ -1,4 +1,4 @@
-import bookshelf from 'db';
+import bookshelf from 'db/bookshelf';
 import md5 from 'js-md5';
 
 import {Verification} from 'models/verifications';

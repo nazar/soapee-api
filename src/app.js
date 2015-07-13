@@ -4,6 +4,9 @@ import logger from 'morgan';
 import express from 'express';
 import cors from 'cors';
 
+import sessions from 'middleware/sessions';
+import config from 'config';
+
 import routes from './routes';
 
 let app = express();
@@ -12,7 +15,8 @@ let app = express();
 app.use( logger( 'dev' ) );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: true } ) );
-app.use( cors() );
+app.use( cors( config.cors ) );
+app.use( sessions );
 
 app.use( '/api', routes );
 

@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import { login, post, verify } from 'controllers/auths';
 
-let router = new Router();
+import { login, post, currentUser, logout } from 'controllers/auths';
+
+let router = Router();
 
 router.route('/')
     .post( post );
@@ -9,7 +10,10 @@ router.route('/')
 router.route('/login')
     .post( login );
 
-router.route('/verify')
-    .post( verify );
+router.route('/logout')
+    .post( logout );
+
+router.route('/current-user' )
+    .get( currentUser );
 
 export default router;

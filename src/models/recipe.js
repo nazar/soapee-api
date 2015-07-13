@@ -1,4 +1,4 @@
-import bookshelf from 'db';
+import bookshelf from 'db/bookshelf';
 
 export let Recipe = bookshelf.Model.extend( {
     tableName: 'recipes',

@@ -12,5 +12,13 @@
             "min": 2,
             "max": 10
         }
+    },
+    "cors": {
+        "origin": [ "http://dev.soapee.com:8080", "http://192.168.30.20:8080" ],
+        "credentials": true
+    },
+    "sessionStore": {
+        "secret": "is it secret? is it safe?",
+        "cookieMaxAge": null
     }
 }

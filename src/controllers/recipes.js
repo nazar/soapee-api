@@ -17,8 +17,10 @@ export function post( req, res ) {
     notes = sanitize( req.body.notes );
 
     packet = _.extend( {}, req.body, {
+        user_id: _.get( req.session, 'userId' ),
         notes
     } );
 
+    //todo validate packet before calling responder
     modelPostResponder( Recipe, packet, res );
 }

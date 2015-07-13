@@ -1,4 +1,4 @@
-import bookshelf from 'db';
+import bookshelf from 'db/bookshelf';
 
 import {User} from 'models/users';
 
