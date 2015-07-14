@@ -2,16 +2,23 @@ var path = require( 'path' );
 var gulp = require( 'gulp' );
 var webpack = require( 'webpack' );
 var nodemon = require( 'nodemon' );
-var webpackConfig = require( './webpack.config' );
+var mocha = require( 'gulp-mocha' );
+
+var devWebpackConfig = require( './webpack.dev' );
+var testWebpackConfig = require( './webpack.test' );
 
 gulp.task( 'default', [ 'run' ] );
 
 gulp.task( 'build', function ( done ) {
-    webpack( webpackConfig ).run( onBuild( done ) );
+    webpack( devWebpackConfig ).run( onBuild( done ) );
+} );
+
+gulp.task( 'build:test', function ( done ) {
+    webpack( testWebpackConfig ).run( onBuild( done ) );
 } );
 
 gulp.task( 'watch', [ 'build' ], function () {
-    webpack( webpackConfig ).watch( 250, function ( err, stats ) {
+    return webpack( devWebpackConfig ).watch( 250, function ( err, stats ) {
         onBuild()( err, stats );
         nodemon.restart();
     } );
@@ -29,6 +36,12 @@ gulp.task( 'run', [ 'watch' ], function () {
     } ).on( 'restart', function () {
         console.log( 'Restarted!' );
     } );
+} );
+
+gulp.task( 'test', [ 'build:test' ], function () {
+    return gulp.src( path.join( __dirname, 'test.build/api.js' ), { read: false } )
+        .pipe( mocha( { reporter: 'spec' } ) )
+        .once( 'end', process.exit.bind( process ) );
 } );
 
 

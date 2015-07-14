@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Promise from 'bluebird';
 
 import { User } from 'models/users';
+import RecordNotFoundError from 'exceptions/recordNotFound';
 
 /**
  * Retrieves User from request.session.userId
@@ -23,7 +24,7 @@ export default class {
                     .fetch()
                     .then( resolve );
             } else {
-                reject( new Error( 'not signed in' ) );
+                reject( new RecordNotFoundError() );
             }
         } );
     }

@@ -1,10 +1,10 @@
 import bodyParser from 'body-parser';
-import errorHandler from 'errorhandler';
 import logger from 'morgan';
 import express from 'express';
 import cors from 'cors';
 
 import sessions from 'middleware/sessions';
+import errorResponder from 'middleware/errorResponder';
 import config from 'config';
 
 import routes from './routes';
@@ -16,17 +16,12 @@ app.use( logger( 'dev' ) );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 app.use( cors( config.cors ) );
+
 app.use( sessions );
 
 app.use( '/api', routes );
 
-if ( app.get( 'env' ) === 'development' ) {
-    app.use( errorHandler() );
-}
+//this goes last as it is an error middleware handler
+app.use( errorResponder );
 
-let server = app.listen( 3000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log( 'Listening on http://%s:%s', host, port );
-} );
+export default app;

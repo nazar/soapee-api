@@ -1,5 +1,4 @@
 import bookshelf from 'db/bookshelf';
-import md5 from 'js-md5';
 
 import {Verification} from 'models/verifications';
 
@@ -7,19 +6,11 @@ export let User = bookshelf.Model.extend( {
     tableName: 'users',
     hasTimestamps: true,
 
-    initialize() {
-        this.on( 'saving', this.setUserKey );
-    },
-
     //relations
     verifications() {
         return this.hasMany( Verification );
-    },
-
-    //setters
-    setUserKey() {
-        this.set( 'key', md5( new Date().toString() ) );
     }
+
 } );
 
 export let Users = bookshelf.Collection.extend( {

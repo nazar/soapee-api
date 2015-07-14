@@ -6,11 +6,11 @@ import modelPostResponder from 'utils/modelPostResponder';
 import sanitize from 'utils/sanitize';
 import collectionJsonResponder from 'utils/collectionJsonResponder';
 
-export function index( req, res ) {
-    collectionJsonResponder( Recipe, res );
+export function index( req, res, next ) {
+    collectionJsonResponder( Recipe, res, next );
 }
 
-export function post( req, res ) {
+export function post( req, res, next ) {
     let notes;
     let packet;
 
@@ -22,5 +22,5 @@ export function post( req, res ) {
     } );
 
     //todo validate packet before calling responder
-    modelPostResponder( Recipe, packet, res );
+    modelPostResponder( Recipe, packet, res, next );
 }

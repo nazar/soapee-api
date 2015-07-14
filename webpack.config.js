@@ -17,45 +17,55 @@ function pathTo() {
 }
 
 
-module.exports = {
-    entry: './src/app.js',
-    target: 'node',
-    output: {
-        path: path.join( __dirname, 'build' ),
-        filename: 'api.js'
-    },
-    devtool: '#cheap-module-source-map',
-    debug: true,
-    externals: nodeModules,
-    node: {
-        __filename: true,
-        __dirname: true
-    },
-    plugins: [
-        new webpack.BannerPlugin( 'require("source-map-support").install();',
-            { raw: true, entryOnly: false } )
-    ],
-    resolve: {
-        extensions: [ '', '.js', '.jsx' ],
-        alias: {
-            //application aliases
-            controllers: pathTo( 'controllers' ),
-            middleware: pathTo( 'middleware' ),
-            models: pathTo( 'models' ),
-            routes: pathTo( 'routes' ),
-            services: pathTo( 'services' ),
-            utils: pathTo( 'utils' ),
+module.exports = function( options ) {
 
-            db: pathTo( 'db' )
-        }
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loaders: [ 'babel' ],
-                exclude: path.join( __dirname, 'node_modules' )
+    var config = {
+        entry: options.entry,
+        target: 'node',
+        output: {
+            path: options.outputPath,
+            filename: 'api.js'
+        },
+        devtool: '#cheap-module-source-map',
+        debug: true,
+        externals: nodeModules,
+        node: {
+            __filename: true,
+            __dirname: true
+        },
+        plugins: [
+            new webpack.BannerPlugin( 'require("source-map-support").install();',
+                { raw: true, entryOnly: false } )
+        ],
+        resolve: {
+            extensions: [ '', '.js', '.jsx' ],
+            alias: {
+                //application aliases
+                controllers: pathTo( 'controllers' ),
+                exceptions: pathTo( 'exceptions' ),
+                middleware: pathTo( 'middleware' ),
+                models: pathTo( 'models' ),
+                routes: pathTo( 'routes' ),
+                services: pathTo( 'services' ),
+                utils: pathTo( 'utils' ),
+
+                db: pathTo( 'db' )
             }
-        ]
-    }
+        },
+        module: {
+            loaders: [
+                {
+                    test: /\.js$/,
+                    loaders: [ 'babel' ],
+                    exclude: path.join( __dirname, 'node_modules' )
+                }
+            ]
+        }
+    };
+
+    _.each( options.aliases, function( path, alias ) {
+        config.resolve.alias[ alias ] = pathTo( path );
+    } );
+
+    return config;
 };

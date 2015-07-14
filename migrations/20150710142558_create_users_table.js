@@ -4,7 +4,6 @@ exports.up = function ( knex ) {
         table.increments().primary();
 
         table.string( 'name' );
-        table.string( 'key' );
         table.string( 'image_url' );
         table.text( 'about' );
 
