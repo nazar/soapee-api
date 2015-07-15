@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import { login, post, currentUser, logout, usernameExists } from 'controllers/auths';
 
+import requiresAuthorisation from 'middleware/requiresAuthorisation';
+
 let router = Router();
 
 router.route('/')
@@ -11,10 +13,10 @@ router.route('/login')
     .post( login );
 
 router.route('/logout')
-    .post( logout );
+    .post( requiresAuthorisation, logout );
 
 router.route('/current-user' )
-    .get( currentUser );
+    .get( requiresAuthorisation, currentUser );
 
 router.route('/users/:username/exists' )
     .get( usernameExists );
