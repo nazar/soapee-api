@@ -19,7 +19,7 @@ function pathTo() {
 
 module.exports = function( options ) {
 
-    var config = {
+    return {
         entry: options.entry,
         target: 'node',
         output: {
@@ -49,7 +49,8 @@ module.exports = function( options ) {
                 services: pathTo( 'services' ),
                 utils: pathTo( 'utils' ),
 
-                db: pathTo( 'db' )
+                db: pathTo( 'db' ),
+                app: pathTo( 'app.js' )
             }
         },
         module: {
@@ -62,10 +63,4 @@ module.exports = function( options ) {
             ]
         }
     };
-
-    _.each( options.aliases, function( path, alias ) {
-        config.resolve.alias[ alias ] = pathTo( path );
-    } );
-
-    return config;
 };

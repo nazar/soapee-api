@@ -16,7 +16,7 @@ router.route('/logout')
 router.route('/current-user' )
     .get( currentUser );
 
-router.route('/user/:username/exists' )
+router.route('/users/:username/exists' )
     .get( usernameExists );
 
 export default router;

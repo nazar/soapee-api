@@ -11,8 +11,8 @@ import BadPasswordError from 'exceptions/badPassword';
 export default class {
 
     constructor( request ) {
-        this.username = _.get( request.body, 'userDetails.username' );
-        this.password = _.get( request.body, 'userDetails.password' );
+        this.username = _.get( request.body, 'username' );
+        this.password = _.get( request.body, 'password' );
 
         this.verification = null;
         this.user = null;
