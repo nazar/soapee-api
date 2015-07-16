@@ -40,6 +40,7 @@ export function login( req, res, next ) {
     service = new loginFromLocal( req );
 
     service.execute()
+        .tap( saveUserToSession( req ) )
         .then( filterOutPrivateProperties )
         .then( promiseResponder( res ) )
         .catch( next );
