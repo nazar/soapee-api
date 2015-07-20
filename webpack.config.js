@@ -12,14 +12,17 @@ var nodeModules = _( fs.readdirSync( 'node_modules' ) )
     }, {} )
     .value();
 
+var pathToSrc;
+
 function pathTo() {
-    return path.join( __dirname, 'src', path.join.apply( path, arguments ) );
+    return path.join( __dirname, path.join.apply( path, arguments ) );
 }
+
+pathToSrc = _.partial( pathTo, 'src' );
 
 
 module.exports = function( options ) {
-
-    return {
+    var config = {
         entry: options.entry,
         target: 'node',
         output: {
@@ -41,16 +44,16 @@ module.exports = function( options ) {
             extensions: [ '', '.js', '.jsx' ],
             alias: {
                 //application aliases
-                controllers: pathTo( 'controllers' ),
-                exceptions: pathTo( 'exceptions' ),
-                middleware: pathTo( 'middleware' ),
-                models: pathTo( 'models' ),
-                routes: pathTo( 'routes' ),
-                services: pathTo( 'services' ),
-                utils: pathTo( 'utils' ),
+                controllers: pathToSrc( 'controllers' ),
+                exceptions: pathToSrc( 'exceptions' ),
+                middleware: pathToSrc( 'middleware' ),
+                models: pathToSrc( 'models' ),
+                routes: pathToSrc( 'routes' ),
+                services: pathToSrc( 'services' ),
+                utils: pathToSrc( 'utils' ),
 
-                db: pathTo( 'db' ),
-                app: pathTo( 'app.js' )
+                db: pathToSrc( 'db' ),
+                app: pathToSrc( 'app.js' )
             }
         },
         module: {
@@ -63,4 +66,10 @@ module.exports = function( options ) {
             ]
         }
     };
+
+    _.each( options.aliases, function(aliasPath, aliasName) {
+        config.resolve.alias[ aliasName ] = pathTo( aliasPath );
+    } );
+
+    return config;
 };

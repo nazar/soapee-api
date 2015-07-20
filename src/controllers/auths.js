@@ -11,9 +11,9 @@ export function post( req, res, next ) {
     let service;
 
     if ( req.body.provider === 'local' ) {
-        service = new SignUpOrLoginFromLocal( req );
+        service = new SignUpOrLoginFromLocal( req.body );
     } else {
-        service = new SignUpOrLoginFromThirdParty( req );
+        service = new SignUpOrLoginFromThirdParty( req.body );
     }
 
     service.execute()
@@ -37,7 +37,7 @@ export function currentUser( req, res, next ) {
 export function login( req, res, next ) {
     let service;
 
-    service = new loginFromLocal( req );
+    service = new loginFromLocal( req.body );
 
     service.execute()
         .tap( saveUserToSession( req ) )
@@ -59,7 +59,7 @@ export function logout( req, res ) {
 export function usernameExists( req, res, next ) {
     let service;
 
-    service = new LocalUsernameExists( req );
+    service = new LocalUsernameExists( req.params );
 
     service.execute()
         .then( promiseResponder( res ) )

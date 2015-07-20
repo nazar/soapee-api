@@ -10,9 +10,9 @@ import BadPasswordError from 'exceptions/badPassword';
 
 export default class {
 
-    constructor( request ) {
-        this.username = _.get( request.body, 'username' );
-        this.password = _.get( request.body, 'password' );
+    constructor( payload ) {
+        this.username = _.get( payload, 'username' );
+        this.password = _.get( payload, 'password' );
 
         this.verification = null;
         this.user = null;

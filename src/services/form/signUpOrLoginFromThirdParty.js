@@ -17,9 +17,9 @@ import { Verification } from 'models/verifications';
 
 export default class {
 
-    constructor( request ) {
-        this.provider = request.body.provider;
-        this.accessToken = request.body.accessToken;
+    constructor( payload ) {
+        this.provider = payload.provider;
+        this.accessToken = payload.accessToken;
 
         this.userDetails = null;
         this.user = null;

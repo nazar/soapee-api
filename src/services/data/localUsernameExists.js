@@ -4,8 +4,8 @@ import { Verification } from 'models/verifications';
 
 export default class {
 
-    constructor( request ) {
-        this.username = request.params.username;
+    constructor( params ) {
+        this.username = _.get( params, 'username' );
     }
 
     execute() {

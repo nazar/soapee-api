@@ -4,3 +4,6 @@ import 'should';
 
 import './functional/api.auths.post';
 import './functional/api.auths.login';
+
+import './functional/api.recipes.index';
+import './functional/api.recipes.post';

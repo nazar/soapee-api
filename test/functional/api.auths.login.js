@@ -5,7 +5,7 @@ describe( '/api', () => {
 
     describe( '/auths', () => {
 
-        describe.only( 'local login', () => {
+        describe( 'local login', () => {
 
             it( 'reject invalid username', done => {
                 request( app )

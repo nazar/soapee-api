@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
-import { Recipe } from 'models/recipe';
+import { Recipe, Recipes } from 'models/recipe';
 
 import modelPostResponder from 'utils/modelPostResponder';
 import sanitize from 'utils/sanitize';
 import collectionJsonResponder from 'utils/collectionJsonResponder';
 
 export function index( req, res, next ) {
-    collectionJsonResponder( Recipe, res, next );
+    collectionJsonResponder( Recipes, res, next );
 }
 
 export function post( req, res, next ) {
