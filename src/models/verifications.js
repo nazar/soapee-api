@@ -1,6 +1,6 @@
 import bookshelf from 'db/bookshelf';
 
-import {User} from 'models/users';
+import {User} from 'models/user';
 
 export let Verification = bookshelf.Model.extend( {
     tableName: 'verifications',

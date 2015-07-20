@@ -1,13 +1,21 @@
 import _ from 'lodash';
 
-import { Recipe, Recipes } from 'models/recipe';
+import { Recipe } from 'models/recipe';
+
+import RecipesList from 'services/data/recipesList';
 
 import modelPostResponder from 'utils/modelPostResponder';
 import sanitize from 'utils/sanitize';
-import collectionJsonResponder from 'utils/collectionJsonResponder';
+import promiseResponder from 'utils/promiseResponder';
 
 export function index( req, res, next ) {
-    collectionJsonResponder( Recipes, res, next );
+    let service;
+
+    service = new RecipesList();
+
+    service.execute()
+        .then( promiseResponder( res ) )
+        .catch( next );
 }
 
 export function post( req, res, next ) {

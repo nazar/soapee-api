@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Promise from 'bluebird';
 
-import { User } from 'models/users';
+import { User } from 'models/user';
 import RecordNotFoundError from 'exceptions/recordNotFound';
 
 /**

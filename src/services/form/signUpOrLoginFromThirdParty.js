@@ -2,7 +2,7 @@ import _ from 'lodash';
 import request from 'superagent';
 import Promise from 'bluebird';
 
-import { User } from 'models/users';
+import { User } from 'models/user';
 import { Verification } from 'models/verifications';
 
 /**

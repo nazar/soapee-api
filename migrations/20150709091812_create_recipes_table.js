@@ -5,6 +5,7 @@ exports.up = function ( knex ) {
 
         table.integer( 'user_id' ).index();
         table.string( 'name' );
+        table.string( 'description' );
         table.text( 'notes' );
 
         table.float( 'kohPurity' );

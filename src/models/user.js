@@ -1,6 +1,7 @@
 import bookshelf from 'db/bookshelf';
 
-import {Verification} from 'models/verifications';
+import { Verification } from 'models/verifications';
+import { Recipe } from 'models/recipe';
 
 export let User = bookshelf.Model.extend( {
     tableName: 'users',
@@ -9,6 +10,10 @@ export let User = bookshelf.Model.extend( {
     //relations
     verifications() {
         return this.hasMany( Verification );
+    },
+
+    recipes() {
+        return this.hasMany( Recipe );
     }
 
 } );
