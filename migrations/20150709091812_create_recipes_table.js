@@ -17,9 +17,6 @@ exports.up = function ( knex ) {
         table.string( 'uom' );
         table.string( 'totalUom' );
 
-        table.specificType( 'oils', 'integer[]' );
-
-        table.json( 'weights', true );
         table.json( 'summary', true );
 
         table.timestamps();

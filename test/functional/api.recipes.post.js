@@ -17,7 +17,7 @@ describe( '/api', () => {
                 } );
             } );
 
-            it.only( 'should save a recipe', done => {
+            it( 'should save a recipe', done => {
                 agent
                     .post( '/api/recipes/' )
                     .send( {

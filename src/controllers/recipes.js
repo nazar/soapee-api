@@ -1,11 +1,9 @@
 import _ from 'lodash';
 
-import { Recipe } from 'models/recipe';
-
 import RecipesList from 'services/data/recipesList';
+import RecipeWithRelated from 'services/data/recipeWithRelated';
+import RecipeSave from 'services/form/recipeSave';
 
-import modelPostResponder from 'utils/modelPostResponder';
-import sanitize from 'utils/sanitize';
 import promiseResponder from 'utils/promiseResponder';
 
 export function index( req, res, next ) {
@@ -18,17 +16,25 @@ export function index( req, res, next ) {
         .catch( next );
 }
 
+export function getRecipe( req, res, next ) {
+    let service;
+
+    service = new RecipeWithRelated( req.params.id );
+
+    service.execute()
+        .then( promiseResponder( res ) )
+        .catch( next );
+}
+
 export function post( req, res, next ) {
-    let notes;
-    let packet;
+    let service;
 
-    notes = sanitize( req.body.notes );
-
-    packet = _.extend( {}, req.body, {
-        user_id: _.get( req.session, 'userId' ),
-        notes
+    service = new RecipeSave( {
+        recipe: req.body,
+        userId: _.get( req.session, 'userId' )
     } );
 
-    //todo validate packet before calling responder
-    modelPostResponder( Recipe, packet, res, next );
+    service.execute()
+        .then( promiseResponder( res ) )
+        .catch( next );
 }

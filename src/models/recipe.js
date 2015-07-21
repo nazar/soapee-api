@@ -1,5 +1,6 @@
 import bookshelf from 'db/bookshelf';
 
+import { Oil } from 'models/oil';
 import { User } from 'models/user';
 
 export let Recipe = bookshelf.Model.extend( {
@@ -12,6 +13,10 @@ export let Recipe = bookshelf.Model.extend( {
             .query( {
                 columns: [ 'id', 'name', 'image_url' ]
             } );
+    },
+
+    oils() {
+        return this.belongsToMany( Oil, 'recipe_oils' ).withPivot( 'weight' );
     }
 } );
 
