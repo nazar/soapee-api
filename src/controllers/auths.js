@@ -78,6 +78,7 @@ function saveUserToSession( request ) {
 
 function filterOutPrivateProperties( user ) {
     return {
+        id: user.get( 'id' ),
         name: user.get( 'name' ),
         imageUrl: user.get( 'image_url' ),
         lastLoggedIn: user.get( 'last_logged_in' )
