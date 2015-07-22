@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { index, getRecipe, post } from 'controllers/recipes';
+import { index, getRecipe, post, put } from 'controllers/recipes';
 
 import requiresAuthorisation from 'middleware/requiresAuthorisation';
 
@@ -11,6 +11,7 @@ router.route( '/' )
     .post( requiresAuthorisation, post );
 
 router.route( '/:id' )
-    .get( getRecipe );
+    .get( getRecipe )
+    .put( requiresAuthorisation, put );
 
 export default router;

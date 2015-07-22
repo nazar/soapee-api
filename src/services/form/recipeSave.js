@@ -19,7 +19,7 @@ export default class {
     }
 
     execute() {
-        return Promise.method( sanitizeNotes ).call( this )
+        return Promise.method( sanitizeInputs ).call( this )
             .bind( this )
             .then( saveRecipe )
             .then( setRecipe )
@@ -31,8 +31,9 @@ export default class {
 ////////////////////
 ///// private
 
-function sanitizeNotes() {
+function sanitizeInputs() {
     this.payload.notes = sanitize( this.payload.notes );
+    this.payload.description = sanitize( this.payload.description );
 }
 
 function saveRecipe() {

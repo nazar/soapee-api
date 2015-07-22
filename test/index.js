@@ -8,3 +8,4 @@ import './functional/api.auths.login';
 import './functional/api.recipes.index';
 import './functional/api.recipes.get';
 import './functional/api.recipes.post';
+import './functional/api.recipes.put';
