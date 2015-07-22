@@ -1,14 +1,13 @@
 import bookshelf from 'db/bookshelf';
 
 import { Recipe } from 'models/recipe';
-import { RecipeOil } from 'models/recipeOil';
 
 export let Oil = bookshelf.Model.extend( {
     tableName: 'oils',
     hasTimestamps: true,
 
     recipes() {
-        return this.belongsToMany( Recipe ).through( RecipeOil );
+        return this.belongsToMany( Recipe, 'recipe_oils' ).withPivot( 'weight' );
     }
 } );
 

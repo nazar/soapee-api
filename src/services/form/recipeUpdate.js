@@ -1,10 +1,7 @@
 import _ from 'lodash';
-import Promise from 'bluebird';
 import sanitize from 'utils/sanitize';
 
 import { Recipe } from 'models/recipe';
-import { RecipeOil } from 'models/recipeOil';
-
 
 
 export default class {
@@ -25,6 +22,7 @@ export default class {
             .then( setRecipe )
             .then( sanitizeInputs )
             .then( saveAsNewForUserOrUpdateRecipe )
+            .then( setRecipe )
             .then( buildRecipeOilsRelation )
             .then( returnRecipe );
     }
@@ -60,27 +58,21 @@ function saveAsNewForUserOrUpdateRecipe() {
     } else {
         return Recipe
             .forge( payload )
-            .save()
-            .then( setRecipe.bind( this ) );
+            .save();
     }
 }
 
-/**
- * delete any existing relations for this recipe - relevant only for uppdating recipe
- */
 function buildRecipeOilsRelation() {
 
-    function createRecipeOil( oilId ) {
-        return RecipeOil.forge( {
-            recipe_id: this.recipe.get( 'id' ),
-            oil_id: oilId,
-            weight: Number( this.payload.weights[ oilId ] )
-        } )
-            .save();
-    }
+    function attachOils(){
+        let pivot = _.map( this.payload.weights, ( weight, oilId ) => {
+            return {
+                oil_id: oilId,
+                weight
+            };
+        } );
 
-    function attachOils() {
-        return Promise.each( this.payload.oils, createRecipeOil.bind( this ) );
+        return this.recipe.oils().attach( pivot );
     }
 
     return this.recipe.oils()
