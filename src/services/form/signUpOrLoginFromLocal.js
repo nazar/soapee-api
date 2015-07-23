@@ -3,7 +3,7 @@ import Promise from 'bluebird';
 import bcrypt from 'bcrypt';
 
 import { User } from 'models/user';
-import { Verification } from 'models/verifications';
+import { Verification } from 'models/verification';
 
 import SignupFields from 'services/validate/signupFields';
 

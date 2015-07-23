@@ -51,6 +51,7 @@ function buildRecipeOilsRelation() {
         return _.map( this.payload.weights, ( weight, oilId ) => {
             return {
                 oil_id: oilId,
+                created_at: new Date(),
                 weight
             };
         } );

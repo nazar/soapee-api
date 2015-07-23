@@ -3,7 +3,7 @@ import request from 'superagent';
 import Promise from 'bluebird';
 
 import { User } from 'models/user';
-import { Verification } from 'models/verifications';
+import { Verification } from 'models/verification';
 
 /**
  * Signs up or logs in the user from either facebook or google

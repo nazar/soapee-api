@@ -68,6 +68,7 @@ function buildRecipeOilsRelation() {
         let pivot = _.map( this.payload.weights, ( weight, oilId ) => {
             return {
                 oil_id: oilId,
+                created_at: new Date(),
                 weight
             };
         } );

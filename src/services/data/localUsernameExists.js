@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { Verification } from 'models/verifications';
+import { Verification } from 'models/verification';
 
 export default class {
 

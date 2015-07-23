@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Promise from 'bluebird';
 import bcrypt from 'bcrypt';
 
-import { Verification } from 'models/verifications';
+import { Verification } from 'models/verification';
 
 import SignupFields from 'services/validate/signupFields';
 

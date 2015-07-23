@@ -64,7 +64,7 @@ describe( '/api', () => {
                     } )
                     .expect( 'Content-Type', /json/ )
                     .expect( 200 )
-                    .end( function ( err, res ) {
+                    .end( function ( err ) {
                         err ? done( err ) : done();
                     } );
 

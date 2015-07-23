@@ -5,6 +5,8 @@ import 'should';
 import './functional/api.auths.post';
 import './functional/api.auths.login';
 
+import './functional/api.me.js';
+
 import './functional/api.oils.get';
 
 import './functional/api.recipes.index';
