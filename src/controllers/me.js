@@ -37,7 +37,7 @@ export function myRecipes( req, res, next ) {
         omitId: true,
         get: 'recipes',
         fetch: {
-            withRelated: 'recipes'
+            withRelated: [ 'recipes', 'recipes.oils' ]
         }
     };
 
@@ -48,7 +48,7 @@ export function myFavouriteRecipes( req, res, next ) {
     let options = {
         get: 'favouriteRecipes',
         fetch: {
-            withRelated: 'favouriteRecipes'
+            withRelated: [ 'favouriteRecipes', 'favouriteRecipes.oils', 'favouriteRecipes.user' ]
         }
     };
 

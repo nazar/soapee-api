@@ -6,7 +6,7 @@ export default class {
         return Recipes
             .forge()
             .fetch( {
-                withRelated: [ 'user' ]
+                withRelated: [ 'user', 'oils' ]
             } );
     }
 }
