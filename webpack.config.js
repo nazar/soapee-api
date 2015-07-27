@@ -22,11 +22,11 @@ pathToSrc = _.partial( pathTo, 'src' );
 
 
 module.exports = function( options ) {
-    var config = {
-        entry: options.entry,
+    var config = _.merge( {}, {
+        entry: './src/index.js',
         target: 'node',
         output: {
-            path: options.outputPath,
+            path: path.join( __dirname, 'build' ),
             filename: 'api.js'
         },
         devtool: '#cheap-module-source-map',
@@ -65,11 +65,13 @@ module.exports = function( options ) {
                 }
             ]
         }
-    };
+    }, options.overrides );
 
     _.each( options.aliases, function(aliasPath, aliasName) {
         config.resolve.alias[ aliasName ] = pathTo( aliasPath );
     } );
+
+    config.plugins = _.union( config.plugins, options.plugins );
 
     return config;
 };

@@ -1,8 +1,12 @@
 var path = require( 'path' );
 
 var webpackDevConfig = {
-    entry: './src/index.js',
-    outputPath: path.join( __dirname, 'build' )
+    overrides: {
+        entry: './src/index.js',
+        output: {
+            path: path.join( __dirname, 'build' )
+        }
+    }
 };
 
 module.exports = require( './webpack.config' )( webpackDevConfig );
