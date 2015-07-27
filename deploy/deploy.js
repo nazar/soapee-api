@@ -29,6 +29,12 @@ module.exports = function ( gruntOrShipit ) {
             );
         }
 
+        function makeTmpDir() {
+            return shipit.remote(
+                'mkdir ' + shipit.releasePath + '/tmp'
+            );
+        }
+
         function copyProductionConfig() {
             return shipit.remote(
                 'cp /var/www/soapee.com/api/shared/config/production.json ' + shipit.releasePath + '/config'
@@ -36,13 +42,14 @@ module.exports = function ( gruntOrShipit ) {
         }
 
         return makeConfigsDir()
+            .then( makeTmpDir )
             .then( copyProductionConfig );
 
     } );
 
     utils.registerTask( shipit, 'reload:soapee', function () {
         return shipit.remote(
-            'touch ' + shipit.releasePath + '/tmp'
+            'touch ' + shipit.releasePath + '/tmp/restart.txt'
         );
     } );
 
