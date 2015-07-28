@@ -2,16 +2,29 @@ var utils = require( 'shipit-utils' );
 
 
 module.exports = function ( gruntOrShipit ) {
-    var shipit = utils.getShipit(gruntOrShipit);
+    var shipit = utils.getShipit( gruntOrShipit );
 
     require( 'shipit-deploy' )( shipit );
     require( './update' )( shipit );
 
 
-    utils.registerTask( shipit, 'link:node_modules', function () {
-        return shipit.remote(
-            'ln -s /var/www/soapee.com/api/shared/node_modules ' + shipit.releasePath + '/node_modules'
-        );
+    utils.registerTask( shipit, 'link:folders', function () {
+
+        function linkNodeModules() {
+            return shipit.remote(
+                'ln -s /var/www/soapee.com/api/shared/node_modules ' + shipit.releasePath + '/node_modules'
+            );
+        }
+
+        function linkLogs() {
+            return shipit.remote(
+                'ln -s /var/www/soapee.com/api/shared/logs ' + shipit.releasePath + '/logs'
+            );
+        }
+
+        return linkNodeModules()
+            .then( linkLogs );
+
     } );
 
 
@@ -57,7 +70,7 @@ module.exports = function ( gruntOrShipit ) {
         'deploy:init',
         'deploy:update-local',
         'soapee:configs',
-        'link:node_modules',
+        'link:folders',
         'npm:install',
         'deploy:publish',
         'deploy:publish',
