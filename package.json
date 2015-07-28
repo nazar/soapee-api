@@ -1,12 +1,24 @@
 {
-    "name": "soaps-api",
+    "name": "soapee-api",
     "version": "1.0.0",
-    "description": "Soapie",
-    "main": "api.js",
+    "description": "Soapee - Express based Lye Calculator, Oil and Soap Recipe Database API Server",
+    "homepage": "http://soapee.com",
+    "main": "src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "mcnazar@gmail.com",
+    "author": {
+        "name": "Nazar Aziz",
+        "email": "mcnazar@gmail.com",
+        "url" : "http://charb.it"
+    },
+    "repository" :{
+        "type" : "git",
+        "url" : "https://github.com/nazar/soapee-api"
+    },
+    "bugs": {
+        "url": "https://github.com/nazar/soapee-api/issues"
+    },
     "dependencies": {
         "bcrypt": "0.8.3",
         "bluebird": "2.9.34",
