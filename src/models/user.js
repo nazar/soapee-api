@@ -16,7 +16,13 @@ export let User = bookshelf.Model.extend( {
     },
 
     favouriteRecipes() {
-        return this.belongsToMany( Recipe, 'favourite_recipes' );
+        return this
+            .belongsToMany( Recipe, 'favourite_recipes' )
+            .query( {
+                where: {
+                    visibility: 1
+                }
+            } );
     }
 
 } );
