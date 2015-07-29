@@ -73,7 +73,6 @@ module.exports = function ( gruntOrShipit ) {
         'link:folders',
         'npm:install',
         'deploy:publish',
-        'deploy:publish',
         'deploy:clean',
         'reload:soapee'
     ] );
