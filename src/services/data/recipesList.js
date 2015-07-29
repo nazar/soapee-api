@@ -4,7 +4,11 @@ export default class {
 
     execute() {
         return Recipes
-            .forge()
+            .query( {
+                where: {
+                    visibility: 1
+                }
+            } )
             .fetch( {
                 withRelated: [ 'user', 'oils' ]
             } );

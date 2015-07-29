@@ -18,7 +18,10 @@ export function index( req, res, next ) {
 export function getRecipe( req, res, next ) {
     let service;
 
-    service = new RecipeWithRelated( req.params.id );
+    service = new RecipeWithRelated( {
+        id: req.params.id,
+        currentUserId: req.session.userId
+    } );
 
     service.execute()
         .then( promiseResponder( res ) )
