@@ -86,4 +86,4 @@ Once all node dependencies are installed, start the development server using:
 gulp
 ```
 
-The development api server should now be accessible on [http://192.168.30.21:3000/api](http://192.168.30.20:3000/api).
+The development api server should now be accessible on [http://192.168.30.21:3000/api](http://192.168.30.21:3000/api).
