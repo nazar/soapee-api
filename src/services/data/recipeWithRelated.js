@@ -1,11 +1,13 @@
 import _ from 'lodash';
 
 import { Recipe } from 'models/recipe';
+import NotAuthorisedError from 'exceptions/notAuthorised';
 
 export default class {
 
     constructor( recipeId ) {
-        this.id = recipeId;
+        this.id = recipeId.id;
+        this.currentUserId = Number( recipeId.currentUserId );
 
         this.oils = null;
         this.weights = null;
@@ -15,6 +17,7 @@ export default class {
         return getRecipe.call( this )
             .bind( this )
             .then( setRecipe )
+            .then( checkVisibilityAccess )
             .then( buildWeights )
             .then( returnRecipe );
     }
@@ -33,6 +36,15 @@ function getRecipe() {
 
 function setRecipe( recipe ) {
     this.recipe = recipe;
+}
+
+function checkVisibilityAccess() {
+    if ( Number( this.recipe.get('visibility') ) === 0 ) {
+        //is it secret?! it is safe?!!
+        if ( Number( this.recipe.get('user_id') ) !== this.currentUserId ) {
+            throw new NotAuthorisedError( 'Cannot view recipe as it is marked Private' );
+        }
+    }
 }
 
 function buildWeights() {

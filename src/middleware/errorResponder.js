@@ -20,7 +20,7 @@ export default function ( err, req, res, next ) {
             errorType: err.name
         } );
     } else if ( err.name === 'NotAuthorisedError' ) {
-        res.status( 401 );   // I think 401 is more appropriate than 403
+        res.status( 403 );
         res.send( {
             message: err.message,
             errorType: err.name
