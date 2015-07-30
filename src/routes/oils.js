@@ -1,6 +1,11 @@
 import { Router } from 'express';
 
-import { index, get } from 'controllers/oils';
+import {
+    index,
+    get,
+    getOilComments,
+    addCommentToOil
+} from 'controllers/oils';
 
 let router = Router();
 
@@ -9,5 +14,9 @@ router.route('/')
 
 router.route('/:id')
     .get( get );
+
+router.route('/:id/comments')
+    .get( getOilComments )
+    .post( addCommentToOil );
 
 export default router;
