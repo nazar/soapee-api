@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import requiresAuthorisation from 'middleware/requiresAuthorisation';
 
 import {
     index,
@@ -17,6 +18,6 @@ router.route('/:id')
 
 router.route('/:id/comments')
     .get( getOilComments )
-    .post( addCommentToOil );
+    .post( requiresAuthorisation, addCommentToOil );
 
 export default router;

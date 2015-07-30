@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import requiresAuthorisation from 'middleware/requiresAuthorisation';
 
 import {
     index,
@@ -9,8 +10,6 @@ import {
     getRecipeComments,
     addRecipeComments
 } from 'controllers/recipes';
-
-import requiresAuthorisation from 'middleware/requiresAuthorisation';
 
 let router = Router();
 
@@ -24,6 +23,6 @@ router.route( '/:id' )
 
 router.route( '/:id/comments' )
     .get( getRecipeComments )
-    .post( addRecipeComments );
+    .post( requiresAuthorisation, addRecipeComments );
 
 export default router;
