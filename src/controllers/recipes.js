@@ -37,15 +37,6 @@ export function put ( req, res, next ) {
     } );
 }
 
-export function saveAsCopy( req, res, next ) {
-    serviceResponder( res, next, RecipeUpdate, {
-        id: req.params.id,
-        recipe: req.body,
-        userId: req.session.userId,
-        saveAsCopy: true
-    } );
-}
-
 export function addRecipeComments( req, res, next ) {
     serviceResponder( res, next, AddCommentableComment, {
         commentableModel: Recipe,

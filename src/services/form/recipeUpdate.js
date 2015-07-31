@@ -11,7 +11,6 @@ export default class {
         this.payload = _.extend( {}, payload.recipe, {
             user_id: Number( payload.userId )
         } );
-        this.saveAsCopy = payload.saveAsCopy;
 
         this.recipe = null;
         this.recipeOils = null;
@@ -55,7 +54,7 @@ function saveAsNewForUserOrUpdateRecipe() {
     let payload = _.omit( this.payload, 'oils', 'weights' );
     let isRecipeOwner = Number( this.recipe.get( 'user_id' ) ) === Number( this.payload.user_id );
 
-    if ( isRecipeOwner && !(this.saveAsCopy) ) {
+    if ( isRecipeOwner ) {
         return this.recipe.save( payload, { patch: true } );
     } else {
         return Recipe

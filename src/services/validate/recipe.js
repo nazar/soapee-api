@@ -31,22 +31,22 @@ export default class {
 
 ///////////////////
 
-function validateSummary() {
-
-}
-
-function validateSummaryTotals() {
-
-}
-
-function validateSummaryBreakdowns() {
-
-}
-
-function validateSummaryProperties() {
-
-}
-
-function validateSaturation() {
-
-}
+//function validateSummary() {
+//
+//}
+//
+//function validateSummaryTotals() {
+//
+//}
+//
+//function validateSummaryBreakdowns() {
+//
+//}
+//
+//function validateSummaryProperties() {
+//
+//}
+//
+//function validateSaturation() {
+//
+//}

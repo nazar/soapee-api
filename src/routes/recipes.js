@@ -7,7 +7,6 @@ import {
     post,
     put,
 
-    saveAsCopy,
     getRecipeComments,
     addRecipeComments
 } from 'controllers/recipes';
@@ -21,9 +20,6 @@ router.route( '/' )
 router.route( '/:id' )
     .get( getRecipe )
     .put( requiresAuthorisation, put );
-
-router.route( '/:id/save-copy' )
-    .put( requiresAuthorisation, saveAsCopy );
 
 router.route( '/:id/comments' )
     .get( getRecipeComments )
