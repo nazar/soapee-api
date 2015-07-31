@@ -5,15 +5,15 @@ import login from 'test-helpers/login';
 
 describe( '/api', () => {
 
-    describe( '/me', () => {
+    let agent = request.agent( app );
 
-        let agent = request.agent( app );
-
-        before( function ( done ) {
-            login( agent, () => {
-                done();
-            } );
+    before( function ( done ) {
+        login( agent, () => {
+            done();
         } );
+    } );
+
+    describe( '/me', () => {
 
         describe( 'Updating', () => {
 
@@ -76,6 +76,18 @@ describe( '/api', () => {
             it( 'should return my favourite recipes', done => {
                 agent
                     .get( '/api/me/favourite/recipes' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.be.Array();
+
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should return my comments', done => {
+                agent
+                    .get( '/api/me/comments' )
                     .expect( 'Content-Type', /json/ )
                     .expect( 200 )
                     .end( function ( err, res ) {

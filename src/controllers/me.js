@@ -4,8 +4,11 @@ import UserUpdateProfile from 'services/form/userUpdateProfile';
 import UserAddRecipeToFavourites from 'services/form/userAddRecipeToFavourites';
 import UserRemoveRecipeFromFavourites from 'services/form/userRemoveRecipeFromFavourites';
 
+import UserComments from 'services/data/userComments';
+
 import modelJsonResponder from 'utils/modelJsonResponder';
-import promiseResponder from 'utils/promiseResponder';
+import serviceResponder from 'utils/serviceResponder';
+
 
 export function myProfile( req, res, next ) {
     let options = {
@@ -18,18 +21,18 @@ export function myProfile( req, res, next ) {
     modelJsonResponder( User, req.session.userId, res, next, options );
 }
 
-export function updateMyProfile( req, res, next ) {
-    let service;
+export function myComments( req, res, next ) {
+    serviceResponder( res, next, UserComments, {
+        userId: req.session.userId
+    } );
+}
 
-    service = new UserUpdateProfile( {
+export function updateMyProfile( req, res, next ) {
+    serviceResponder( res, next, UserUpdateProfile, {
         userId: req.session.userId,
         name: req.body.name,
         about: req.body.about
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
 
 export function myRecipes( req, res, next ) {
@@ -56,28 +59,16 @@ export function myFavouriteRecipes( req, res, next ) {
 }
 
 export function addRecipeToFavourites( req, res, next ) {
-    let service;
-
-    service = new UserAddRecipeToFavourites( {
+    serviceResponder( res, next, UserAddRecipeToFavourites, {
         recipeId: req.params.id,
         userId: req.session.userId
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
 
 export function removeRecipeFromFavourites( req, res, next ) {
-    let service;
-
-    service = new UserRemoveRecipeFromFavourites( {
+    serviceResponder( res, next, UserRemoveRecipeFromFavourites, {
         recipeId: req.params.id,
         userId: req.session.userId
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
 

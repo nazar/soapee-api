@@ -5,7 +5,8 @@ import GetCommentableComments from 'services/data/getCommentableComments';
 
 import collectionJsonResponder from 'utils/collectionJsonResponder';
 import modelJsonResponder from 'utils/modelJsonResponder';
-import promiseResponder from 'utils/promiseResponder';
+import serviceResponder from 'utils/serviceResponder';
+
 
 export function index( req, res, next ) {
     collectionJsonResponder( Oils, res, next );
@@ -22,30 +23,18 @@ export function get( req, res, next ) {
 }
 
 export function getOilComments( req, res, next ) {
-    let service;
-
-    service = new GetCommentableComments( {
+    serviceResponder( res, next, GetCommentableComments, {
         commentableId: req.params.id,
         commentableModel: Oil
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
 
 export function addCommentToOil( req, res, next ) {
-    let service;
-
-    service = new AddCommentableComment( {
+    serviceResponder( res, next, AddCommentableComment, {
         commentableModel: Oil,
         commentableType: 'oils',
         commentableId: req.params.id,
         userId: req.session.userId,
         comment: req.body.comment
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
