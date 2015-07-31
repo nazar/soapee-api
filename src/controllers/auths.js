@@ -1,11 +1,12 @@
-import promiseResponder from 'utils/promiseResponder';
-
 import SignUpOrLoginFromThirdParty from 'services/form/signUpOrLoginFromThirdParty';
 import SignUpOrLoginFromLocal from 'services/form/signUpOrLoginFromLocal';
 import loginFromLocal from 'services/form/loginFromLocal';
 
 import UserFromSession from 'services/data/userFromSession';
 import LocalUsernameExists from 'services/data/localUsernameExists';
+
+import promiseResponder from 'utils/promiseResponder';
+import serviceResponder from 'utils/serviceResponder';
 
 export function post( req, res, next ) {
     let service;
@@ -57,13 +58,7 @@ export function logout( req, res ) {
 }
 
 export function usernameExists( req, res, next ) {
-    let service;
-
-    service = new LocalUsernameExists( req.params );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
+    serviceResponder( res, next, LocalUsernameExists, req.params );
 }
 
 /////////////////
@@ -72,7 +67,6 @@ export function usernameExists( req, res, next ) {
 function saveUserToSession( request ) {
     return user => {
         request.session.userId = user.id;
-        request.session.save();
     };
 }
 

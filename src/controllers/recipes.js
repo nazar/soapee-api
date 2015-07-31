@@ -8,83 +8,57 @@ import RecipeSave from 'services/form/recipeSave';
 import RecipeUpdate from 'services/form/recipeUpdate';
 import AddCommentableComment from 'services/form/addCommentableComment';
 
-import promiseResponder from 'utils/promiseResponder';
+import serviceResponder from 'utils/serviceResponder';
+
 
 export function index( req, res, next ) {
-    let service;
-
-    service = new RecipesList();
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
+    serviceResponder( res, next, RecipesList );
 }
 
 export function getRecipe( req, res, next ) {
-    let service;
-
-    service = new RecipeWithRelated( {
+    serviceResponder( res, next, RecipeWithRelated, {
         id: req.params.id,
         currentUserId: req.session.userId
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
 
 export function post( req, res, next ) {
-    let service;
-
-    service = new RecipeSave( {
+    serviceResponder( res, next, RecipeSave, {
         recipe: req.body,
         userId: req.session.userId
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
 
 export function put ( req, res, next ) {
-    let service;
-
-    service = new RecipeUpdate( {
+    serviceResponder( res, next, RecipeUpdate, {
         id: req.params.id,
         recipe: req.body,
         userId: req.session.userId
     } );
+}
 
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
+export function saveAsCopy( req, res, next ) {
+    serviceResponder( res, next, RecipeUpdate, {
+        id: req.params.id,
+        recipe: req.body,
+        userId: req.session.userId,
+        saveAsCopy: true
+    } );
 }
 
 export function addRecipeComments( req, res, next ) {
-    let service;
-
-    service = new AddCommentableComment( {
+    serviceResponder( res, next, AddCommentableComment, {
         commentableModel: Recipe,
         commentableType: 'recipes',
         commentableId: req.params.id,
         userId: req.session.userId,
         comment: req.body.comment
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
 
 export function getRecipeComments( req, res, next ) {
-    let service;
-
-    service = new GetCommentableComments( {
+    serviceResponder( res, next, GetCommentableComments, {
         commentableId: req.params.id,
         commentableModel: Recipe
     } );
-
-    service.execute()
-        .then( promiseResponder( res ) )
-        .catch( next );
 }
