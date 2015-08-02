@@ -1,10 +1,11 @@
 import { Oil, Oils } from 'models/oil';
 
 import AddCommentableComment from 'services/form/addCommentableComment';
+
 import GetCommentableComments from 'services/data/getCommentableComments';
+import GetOilWithPublicRecipes from 'services/data/getOilWithPublicRecipes';
 
 import collectionJsonResponder from 'utils/collectionJsonResponder';
-import modelJsonResponder from 'utils/modelJsonResponder';
 import serviceResponder from 'utils/serviceResponder';
 
 
@@ -13,13 +14,9 @@ export function index( req, res, next ) {
 }
 
 export function get( req, res, next ) {
-    let options = {
-        fetch: {
-            withRelated: 'recipes'
-        }
-    };
-
-    modelJsonResponder( Oil, req.params.id, res, next, options );
+    serviceResponder(res, next, GetOilWithPublicRecipes, {
+        oilId: req.params.id
+    }  );
 }
 
 export function getOilComments( req, res, next ) {
