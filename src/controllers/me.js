@@ -1,5 +1,7 @@
 import { User } from 'models/user';
 
+import UserProfile from 'services/data/userProfile';
+
 import UserUpdateProfile from 'services/form/userUpdateProfile';
 import UserAddRecipeToFavourites from 'services/form/userAddRecipeToFavourites';
 import UserRemoveRecipeFromFavourites from 'services/form/userRemoveRecipeFromFavourites';
@@ -11,14 +13,9 @@ import serviceResponder from 'utils/serviceResponder';
 
 
 export function myProfile( req, res, next ) {
-    let options = {
-        omitId: true,
-        fetch: {
-            columns: [ 'name', 'image_url', 'about' ]
-        }
-    };
-
-    modelJsonResponder( User, req.session.userId, res, next, options );
+    serviceResponder( res, next, UserProfile, {
+        userId: req.session.userId
+    } );
 }
 
 export function myComments( req, res, next ) {
