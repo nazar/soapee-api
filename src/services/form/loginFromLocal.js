@@ -61,12 +61,17 @@ function getVerificationAndUser() {
 }
 
 function verifyPassword() {
+    function updateLastLoggedInDate() {
+        return this.user.save( { last_logged_in: new Date() }, { patch: true } );
+    }
+
     return Promise.promisify( bcrypt.compare )( this.password, this.verification.get( 'hash' ) )
         .then( matches => {
             if ( !(matches) ) {
                 throw new BadPasswordError();
             }
-        } );
+        } )
+        .then( updateLastLoggedInDate.bind( this ) );
 }
 
 function returnUser() {

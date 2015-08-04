@@ -118,6 +118,11 @@ function doRegistrationIfSigningUp() {
 }
 
 function verifyPasswordIfLoggingIn() {
+
+    function updateLastLoggedInDate() {
+        return this.user.save( { last_logged_in: new Date() }, { patch: true } );
+    }
+
     if ( this.process === 'login' ) {
 
         return Promise.promisify( bcrypt.compare )( this.password, this.verification.get( 'hash' ) )
@@ -125,7 +130,8 @@ function verifyPasswordIfLoggingIn() {
                 if ( !(matches) ) {
                     throw new BadPasswordError();
                 }
-            } );
+            } )
+            .then( updateLastLoggedInDate.bind( this ) );
     }
 }
 
