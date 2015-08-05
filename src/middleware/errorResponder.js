@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default function ( err, req, res, next ) {
 
     if ( err.name === 'CheckitError' ) {
@@ -7,20 +9,14 @@ export default function ( err, req, res, next ) {
             errorType: 'validation',
             fields: err.toJSON()
         } );
-    } else if ( err.name === 'BadPasswordError' ) {
-        res.status( 401 );
-        res.send( {
-            message: err.message,
-            errorType: err.name
-        } );
-    } else if ( err.name === 'RecordNotFoundError' ) {
-        res.status( 404 );
-        res.send( {
-            message: err.message,
-            errorType: err.name
-        } );
-    } else if ( err.name === 'NotAuthorisedError' ) {
-        res.status( 403 );
+    } else if ( _.includes( [
+            'InvalidPostData',
+            'BadPasswordError',
+            'RecordNotFoundError',
+            'NotAuthorisedError'
+        ], err.name ) ) {
+
+        res.status( err.status );
         res.send( {
             message: err.message,
             errorType: err.name
