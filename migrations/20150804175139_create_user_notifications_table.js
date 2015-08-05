@@ -8,6 +8,9 @@ exports.up = function ( knex ) {
         table.smallint( 'type' ).notNullable();
         table.boolean( 'read' ).defaultTo( false ).notNullable();
 
+        table.integer( 'user_notifiable_id' ).index();
+        table.string( 'user_notifiable_type' );
+
         table.text( 'message' );
 
         table.timestamp( 'read_on' );

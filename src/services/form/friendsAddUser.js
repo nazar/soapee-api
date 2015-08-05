@@ -55,7 +55,9 @@ function notifyTargetUser() {
         .forge( {
             user_id: this.targetUserId,
             type: 1,
-            message: `${this.currentUser.get( 'name' )} as requested to be your friend`
+            message: `${this.currentUser.get( 'name' )} has requested to be your friend`,
+            user_notifiable_id: this.friendship.get( 'id' ),
+            user_notifiable_type: 'friendships'
         } )
         .save();
 }
