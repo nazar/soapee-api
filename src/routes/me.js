@@ -5,11 +5,17 @@ import requiresAuthorisation from 'middleware/requiresAuthorisation';
 import {
     myProfile,
     updateMyProfile,
+
     myComments,
+
     myRecipes,
     myFavouriteRecipes,
     addRecipeToFavourites,
-    removeRecipeFromFavourites
+    removeRecipeFromFavourites,
+
+    myNotifications,
+    updateMyNotification,
+    deleteMyNotification
 } from 'controllers/me';
 
 let router = Router();
@@ -33,6 +39,13 @@ router.route('/favourite/recipes/:id')
 
 router.route('/recipes')
     .get( myRecipes );
+
+router.route('/notifications')
+    .get( myNotifications );
+
+router.route('/notifications/:id')
+    .put( updateMyNotification )
+    .delete( deleteMyNotification );
 
 
 export default router;
