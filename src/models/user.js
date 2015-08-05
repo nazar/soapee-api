@@ -2,6 +2,7 @@ import bookshelf from 'db/bookshelf';
 
 import { Comment } from 'models/comment';
 import { Recipe } from 'models/recipe';
+import { UserNotification } from 'models/userNotification';
 import { Verification } from 'models/verification';
 
 export let User = bookshelf.Model.extend( {
@@ -28,6 +29,10 @@ export let User = bookshelf.Model.extend( {
                     visibility: 1
                 }
             } );
+    },
+
+    userNotifications() {
+        return this.hasMany( UserNotification );
     }
 
 } );

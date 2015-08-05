@@ -2,11 +2,14 @@ import { User } from 'models/user';
 
 import UserProfile from 'services/data/userProfile';
 
-import UserUpdateProfile from 'services/form/userUpdateProfile';
 import UserAddRecipeToFavourites from 'services/form/userAddRecipeToFavourites';
+import UserNotificationsUpdate from 'services/form/userNotificationsUpdate';
+import UserNotificationsDelete from 'services/form/userNotificationsDelete';
 import UserRemoveRecipeFromFavourites from 'services/form/userRemoveRecipeFromFavourites';
+import UserUpdateProfile from 'services/form/userUpdateProfile';
 
 import UserComments from 'services/data/userComments';
+import UserNotifications from 'services/data/userNotifications';
 
 import modelJsonResponder from 'utils/modelJsonResponder';
 import serviceResponder from 'utils/serviceResponder';
@@ -66,6 +69,28 @@ export function removeRecipeFromFavourites( req, res, next ) {
     serviceResponder( res, next, UserRemoveRecipeFromFavourites, {
         recipeId: req.params.id,
         userId: req.session.userId
+    } );
+}
+
+export function myNotifications( req, res, next ) {
+    serviceResponder( res, next, UserNotifications, {
+        userId: req.session.userId,
+        filters: req.query.filters
+    } );
+}
+
+export function  updateMyNotification( req, res, next ) {
+    serviceResponder( res, next, UserNotificationsUpdate, {
+        userId: req.session.userId,
+        notificationId: req.params.id,
+        payload: req.body
+    } );
+}
+
+export function  deleteMyNotification( req, res, next ) {
+    serviceResponder( res, next, UserNotificationsDelete, {
+        userId: req.session.userId,
+        notificationId: req.params.id
     } );
 }
 

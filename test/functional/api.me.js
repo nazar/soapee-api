@@ -58,6 +58,35 @@ describe( '/api', () => {
                     } );
             } );
 
+            it( 'should update a notification', done => {
+                agent
+                    .put( '/api/me/notifications/2' )
+                    .send( {
+                        read: 1
+                    } )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.have.property( 'id' );
+
+                        res.body.id.should.equal( 2 );
+                        res.body.read.should.equal( 1 );
+
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should delete a notification', done => {
+                agent
+                    .del( '/api/me/notifications/2' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        console.log('body', res.body );
+                        err ? done( err ) : done();
+                    } );
+            } );
+
         } );
 
         describe( 'Getting', () => {
@@ -91,7 +120,24 @@ describe( '/api', () => {
                     .expect( 'Content-Type', /json/ )
                     .expect( 200 )
                     .end( function ( err, res ) {
-                        console.log('body', res.body );
+                        res.body.should.be.Array();
+
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should return my notifications', done => {
+                agent
+                    .get( '/api/me/notifications' )
+                    .query( {
+                        filters: {
+                            read: 0
+                        }
+                    } )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        console.log( 'body', res.body );
 
                         res.body.should.be.Array();
 
