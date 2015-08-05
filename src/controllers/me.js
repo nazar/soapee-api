@@ -7,6 +7,8 @@ import UserNotificationsUpdate from 'services/form/userNotificationsUpdate';
 import UserNotificationsDelete from 'services/form/userNotificationsDelete';
 import UserRemoveRecipeFromFavourites from 'services/form/userRemoveRecipeFromFavourites';
 import UserUpdateProfile from 'services/form/userUpdateProfile';
+import FriendsAddUser from 'services/form/friendsAddUser';
+import FriendsRemoveUser from 'services/form/friendsRemoveUser';
 
 import UserComments from 'services/data/userComments';
 import UserNotifications from 'services/data/userNotifications';
@@ -91,6 +93,53 @@ export function  deleteMyNotification( req, res, next ) {
     serviceResponder( res, next, UserNotificationsDelete, {
         userId: req.session.userId,
         notificationId: req.params.id
+    } );
+}
+
+export function  myFriends( req, res, next ) {
+    let options = {
+        get: 'friends',
+        fetch: {
+            withRelated: [ 'friends' ]
+        }
+    };
+
+    modelJsonResponder( User, req.session.userId, res, next, options );
+}
+
+export function  myFriendPendingIncoming( req, res, next ) {
+    let options = {
+        get: 'pendingIncomingFriendRequests',
+        fetch: {
+            withRelated: [ 'pendingIncomingFriendRequests' ]
+        }
+    };
+
+    modelJsonResponder( User, req.session.userId, res, next, options );
+}
+
+export function  myFriendsPendingOutgoing( req, res, next ) {
+    let options = {
+        get: 'pendingOutgoingFriendRequests',
+        fetch: {
+            withRelated: [ 'pendingOutgoingFriendRequests' ]
+        }
+    };
+
+    modelJsonResponder( User, req.session.userId, res, next, options );
+}
+
+export function  addFriend( req, res, next ) {
+    serviceResponder( res, next, FriendsAddUser, {
+        currentUserId: req.session.userId,
+        targetUserId: req.params.userId
+    } );
+}
+
+export function  removeFriend( req, res, next ) {
+    serviceResponder( res, next, FriendsRemoveUser, {
+        currentUserId: req.session.userId,
+        targetUserId: req.params.userId
     } );
 }
 

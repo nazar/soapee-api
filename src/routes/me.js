@@ -15,7 +15,13 @@ import {
 
     myNotifications,
     updateMyNotification,
-    deleteMyNotification
+    deleteMyNotification,
+
+    myFriends,
+    myFriendPendingIncoming,
+    myFriendsPendingOutgoing,
+    addFriend,
+    removeFriend
 } from 'controllers/me';
 
 let router = Router();
@@ -37,8 +43,19 @@ router.route('/favourite/recipes/:id')
     .put( addRecipeToFavourites )
     .delete( removeRecipeFromFavourites );
 
-router.route('/recipes')
-    .get( myRecipes );
+router.route('/friends')
+    .get( myFriends );
+
+router.route('/friends/:userId')
+    .post( addFriend )
+    .delete( removeFriend );
+
+router.route('/friends/incoming')
+    .get( myFriendPendingIncoming );
+
+router.route('/friends/outgoing')
+    .get( myFriendsPendingOutgoing );
+
 
 router.route('/notifications')
     .get( myNotifications );
@@ -46,6 +63,9 @@ router.route('/notifications')
 router.route('/notifications/:id')
     .put( updateMyNotification )
     .delete( deleteMyNotification );
+
+router.route('/recipes')
+    .get( myRecipes );
 
 
 export default router;

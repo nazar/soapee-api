@@ -81,6 +81,26 @@ describe( '/api', () => {
                     .del( '/api/me/notifications/2' )
                     .expect( 'Content-Type', /json/ )
                     .expect( 200 )
+                    .end( function ( err ) {
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should add a friend', done => {
+                agent
+                    .post( '/api/me/friends/3' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err ) {
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should remove a friend', done => {
+                agent
+                    .del( '/api/me/friends/3' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
                     .end( function ( err, res ) {
                         console.log('body', res.body );
                         err ? done( err ) : done();
@@ -117,6 +137,42 @@ describe( '/api', () => {
             it( 'should return my comments', done => {
                 agent
                     .get( '/api/me/comments' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.be.Array();
+
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should return my friends', done => {
+                agent
+                    .get( '/api/me/friends' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.be.Array();
+
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should return my pending incoming friend requests', done => {
+                agent
+                    .get( '/api/me/friends/incoming' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.be.Array();
+
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should return my pending outgoing friend requests', done => {
+                agent
+                    .get( '/api/me/friends/outgoing' )
                     .expect( 'Content-Type', /json/ )
                     .expect( 200 )
                     .end( function ( err, res ) {
