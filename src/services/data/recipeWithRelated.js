@@ -45,7 +45,9 @@ function checkVisibilityAccess() {
             throw new NotAuthorisedError( 'Cannot view recipe as it is marked Private' );
         }
     } else if ( Number( this.recipe.get( 'visibility' ) ) == 2 ) {
-        return checkIfFriendshipExists.call( this );
+        if ( Number( this.recipe.get( 'user_id' ) ) !== this.currentUserId ) {
+            return checkIfFriendshipExists.call( this );
+        }
     }
 }
 

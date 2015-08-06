@@ -2,7 +2,8 @@ import { Router } from 'express';
 
 import {
     get,
-    getUserRecipes
+    getUserRecipes,
+    getUserFriends
 } from 'controllers/users';
 
 let router = Router();
@@ -12,5 +13,8 @@ router.route('/:id')
 
 router.route('/:id/recipes')
     .get( getUserRecipes );
+
+router.route('/:id/friends')
+    .get( getUserFriends );
 
 export default router;

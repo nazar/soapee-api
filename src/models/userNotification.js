@@ -12,7 +12,7 @@ export let UserNotification = bookshelf.Model.extend( {
     },
 
     userNotifiable() {
-        return this.morhphTo( 'user_notifiable', Friendship );
+        return this.morphTo( 'user_notifiable', Friendship );
     }
 
 } );

@@ -1,17 +1,16 @@
-import _ from 'lodash';
 import { User } from 'models/user';
 
 export default class {
 
     constructor( options ) {
         this.userId = options.userId;
-        this.filters = _.extend( {}, options.filters );
+        this.limit = options.limit || 10;
 
         this.notifications = null;
     }
 
     execute() {
-        return getUserWithNotifications.call( this )
+        return getUserFriendshipNotifications.call( this )
             .bind( this )
             .then( setNotifications )
             .then( returnNotifications );
@@ -21,7 +20,7 @@ export default class {
 /////////////
 ////
 
-function getUserWithNotifications() {
+function getUserFriendshipNotifications() {
 
     return User
         .forge( {
@@ -33,11 +32,13 @@ function getUserWithNotifications() {
                     userNotifications: qb => {
                         qb
                             .where( {
-                                read: Number( this.filters.read ) || 0
+                                user_notifiable_type: 'friendships'
                             } )
+                            .limit( this.limit )
                             .orderBy( 'created_at', 'desc' );
                     }
-                }
+                },
+                'userNotifications.userNotifiable.user' // <3 <3 <3 <3 thank you bookshelf!! <3 <3 <3 <3 <3
             ]
         } );
 }

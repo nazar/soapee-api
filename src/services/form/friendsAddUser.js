@@ -19,6 +19,7 @@ export default class {
             .bind( this )
             .then( createFriendship )
             .then( setFriendship )
+            .then( requestingOrApprovingFriendship )
             .then( notifyTargetUser )
             .then( returnFriendship )
             .catch( checkForDuplicates )
@@ -50,12 +51,31 @@ function setFriendship( friendship ) {
     this.friendship = friendship;
 }
 
+function requestingOrApprovingFriendship() {
+    return this.currentUser
+        .fetch( {
+            withRelated: [ 'friends' ]
+        } )
+        .then( user => this.currentUser = user );
+}
+
 function notifyTargetUser() {
+    let message;
+    let type;
+
+    if ( this.currentUser.related( 'friends' ).size() ) {
+        message = `${this.currentUser.get( 'name' )} became your friend!`;
+        type = 0;
+    } else {
+        message = `${this.currentUser.get( 'name' )} wants to be your friend`;
+        type = 1;
+    }
+
     return UserNotification
         .forge( {
             user_id: this.targetUserId,
-            type: 1,
-            message: `${this.currentUser.get( 'name' )} has requested to be your friend`,
+            message,
+            type,
             user_notifiable_id: this.friendship.get( 'id' ),
             user_notifiable_type: 'friendships'
         } )
