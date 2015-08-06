@@ -5,9 +5,9 @@ import NotAuthorisedError from 'exceptions/notAuthorised';
 
 export default class {
 
-    constructor( recipeId ) {
-        this.id = recipeId.id;
-        this.currentUserId = Number( recipeId.currentUserId );
+    constructor( options ) {
+        this.id = options.id;
+        this.currentUserId = Number( options.currentUserId );
 
         this.oils = null;
         this.weights = null;
@@ -39,11 +39,41 @@ function setRecipe( recipe ) {
 }
 
 function checkVisibilityAccess() {
-    if ( Number( this.recipe.get('visibility') ) === 0 ) {
+    if ( Number( this.recipe.get( 'visibility' ) ) === 0 ) {
         //is it secret?! it is safe?!!
-        if ( Number( this.recipe.get('user_id') ) !== this.currentUserId ) {
+        if ( Number( this.recipe.get( 'user_id' ) ) !== this.currentUserId ) {
             throw new NotAuthorisedError( 'Cannot view recipe as it is marked Private' );
         }
+    } else if ( Number( this.recipe.get( 'visibility' ) ) == 2 ) {
+        if ( Number( this.recipe.get( 'user_id' ) ) !== this.currentUserId ) {
+            return checkIfFriendshipExists.call( this );
+        }
+    }
+}
+
+function checkIfFriendshipExists() {
+    if ( this.currentUserId ) {
+        //only friends can see this recipe
+        return this.recipe
+            .related( 'user' )
+            .fetch( {
+                withRelated: [
+                    {
+                        friends: qb => {
+                            qb.where( { user_id: this.currentUserId } )
+                        }
+                    }
+                ]
+            } )
+            .then( recipe => {
+                let friends = recipe.related('friends').size();
+
+                if ( !(friends > 0) ) {
+                    throw new NotAuthorisedError( 'Cannot view recipe as it is marked Private' );
+                }
+            } )
+    } else {
+        throw new NotAuthorisedError( 'Cannot view recipe as it is marked Private' );
     }
 }
 

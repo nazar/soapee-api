@@ -44,6 +44,26 @@ describe( '/api', () => {
 
         } );
 
+        describe( 'GET /users/:id/friends', () => {
+
+            it( 'should return user friends', done => {
+                request( app )
+                    .get( '/api/users/1/friends' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        console.log('body', res.body );
+                        res.body.should.be.Array();
+
+                        res.body[0].should.have.property( 'name' );
+
+                        err ? done( err ) : done();
+                    } );
+
+            } );
+
+        } );
+
 
     } );
 } );
