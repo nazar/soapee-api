@@ -6,6 +6,10 @@ export default class NotAuthorisedError extends Exception {
         super( message );
     }
 
+    get name() {
+        return 'NotAuthorisedError';
+    }
+
     get status() {
         return 403;
     }

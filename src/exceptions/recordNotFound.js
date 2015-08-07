@@ -6,6 +6,10 @@ export default class RecordNotFoundError extends Exception {
         super( message );
     }
 
+    get name() {
+        return 'RecordNotFoundError';
+    }
+
     get status() {
         return 404;
     }

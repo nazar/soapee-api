@@ -6,6 +6,10 @@ export default class InvalidPostData extends Exception {
         super( message );
     }
 
+    get name() {
+        return 'InvalidPostData';
+    }
+
     get status() {
         return 422;
     }

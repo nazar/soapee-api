@@ -4,7 +4,6 @@ export default class Exception extends Error {
         super();
         this.message = message;
         this.stack = (new Error()).stack;
-        this.name = this.constructor.name;
     }
 
 }
