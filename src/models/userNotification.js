@@ -1,7 +1,8 @@
 import bookshelf from 'db/bookshelf';
 
-import { User } from 'models/user';
+import { Comment } from 'models/comment';
 import { Friendship } from 'models/friendship';
+import { User } from 'models/user';
 
 export let UserNotification = bookshelf.Model.extend( {
     tableName: 'user_notifications',
@@ -12,7 +13,7 @@ export let UserNotification = bookshelf.Model.extend( {
     },
 
     userNotifiable() {
-        return this.morphTo( 'user_notifiable', Friendship );
+        return this.morphTo( 'user_notifiable', Friendship, Comment );
     }
 
 } );

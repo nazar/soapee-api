@@ -31,9 +31,7 @@ function getUserFriendshipNotifications() {
                 {
                     userNotifications: qb => {
                         qb
-                            .where( {
-                                user_notifiable_type: 'friendships'
-                            } )
+                            .whereIn( 'user_notifiable_type', [ 'friendships', 'comments' ] )
                             .limit( this.limit )
                             .orderBy( 'created_at', 'desc' );
                     }
