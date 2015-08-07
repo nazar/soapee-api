@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import Promise from 'bluebird';
 
 import { User } from 'models/user';
 import RecordNotFoundError from 'exceptions/recordNotFound';
@@ -17,15 +16,12 @@ export default class {
     }
 
     execute() {
-        return new Promise( ( resolve, reject ) => {
-            if ( this.userId ) {
-                User
-                    .forge( { id: this.userId } )
-                    .fetch()
-                    .then( resolve );
-            } else {
-                reject( new RecordNotFoundError() );
-            }
-        } );
+        if ( this.userId ) {
+            return User
+                .forge( { id: this.userId } )
+                .fetch();
+        } else {
+            throw new RecordNotFoundError();
+        }
     }
 }

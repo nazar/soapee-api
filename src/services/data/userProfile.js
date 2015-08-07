@@ -25,7 +25,19 @@ function getUser() {
             id: this.userId
         } )
         .fetch( {
-            columns: [ 'id', 'name', 'image_url', 'about' ]
+            columns: [ 'id', 'name', 'image_url', 'about' ],
+            withRelated: [
+                {
+                    verifications: qb => {
+                        qb
+                            .select( 'user_id', 'provider_id' )
+                            .where( {
+                                provider_name: 'local'
+                            } );
+                    }
+                }
+            ]
+
         } );
 }
 
