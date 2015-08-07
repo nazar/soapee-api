@@ -1,6 +1,7 @@
 import sanitize from 'utils/sanitize';
 
 import { Comment } from 'models/comment';
+import { UserNotification } from 'models/userNotification';
 
 export default class {
 
@@ -21,6 +22,7 @@ export default class {
             .then( sanitizeInputs )
             .then( addComment )
             .then( setComment )
+            .then( createUserNotificationForRecipes )
             .then( returnComment );
     }
 }
@@ -56,6 +58,29 @@ function addComment() {
 
 function setComment( comment ) {
     this.comment = comment;
+}
+
+function createUserNotificationForRecipes() {
+    if ( this.commentableType === 'recipes' ) {
+        //no notification if user comments on her own recipes
+        if ( Number( this.userId ) !== Number( this.commentable.get( 'user_id' ) ) ) {
+            return UserNotification
+                .forge( {
+                    user_id: this.commentable.get( 'user_id' ),
+                    message: JSON.stringify( {
+                        commentable: 'recipes',
+                        recipe: {
+                            id: this.commentable.get( 'id' ),
+                            name: this.commentable.get( 'name' )
+                        }
+                    } ),
+                    type: 0,
+                    user_notifiable_id: this.comment.get( 'id' ),
+                    user_notifiable_type: 'comments'
+                } )
+                .save();
+        }
+    }
 }
 
 function returnComment() {
