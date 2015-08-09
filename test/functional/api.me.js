@@ -193,10 +193,18 @@ describe( '/api', () => {
                     .expect( 'Content-Type', /json/ )
                     .expect( 200 )
                     .end( function ( err, res ) {
-                        console.log( 'body', res.body );
-
                         res.body.should.be.Array();
+                        err ? done( err ) : done();
+                    } );
+            } );
 
+            it( 'should return my friends recipes', done => {
+                agent
+                    .get( '/api/me/friends/recipes' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.be.Array();
                         err ? done( err ) : done();
                     } );
             } );

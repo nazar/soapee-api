@@ -20,6 +20,7 @@ import {
     myFriends,
     myFriendPendingIncoming,
     myFriendsPendingOutgoing,
+    myFriendsRecipes,
     addFriend,
     removeFriend
 } from 'controllers/me';
@@ -55,6 +56,9 @@ router.route('/friends/incoming')
 
 router.route('/friends/outgoing')
     .get( myFriendsPendingOutgoing );
+
+router.route('/friends/recipes')
+    .get( myFriendsRecipes );
 
 
 router.route('/notifications')

@@ -11,6 +11,7 @@ import FriendsAddUser from 'services/form/friendsAddUser';
 import FriendsRemoveUser from 'services/form/friendsRemoveUser';
 
 import UserComments from 'services/data/userComments';
+import UserFriendsRecipes from 'services/data/userFriendsRecipes';
 import UserNotifications from 'services/data/userNotifications';
 
 import modelJsonResponder from 'utils/modelJsonResponder';
@@ -127,6 +128,12 @@ export function  myFriendsPendingOutgoing( req, res, next ) {
     };
 
     modelJsonResponder( User, req.session.userId, res, next, options );
+}
+
+export function  myFriendsRecipes( req, res, next ) {
+    serviceResponder( res, next, UserFriendsRecipes, {
+        userId: req.session.userId
+    } );
 }
 
 export function  addFriend( req, res, next ) {
