@@ -5,6 +5,7 @@ import RecipeWithRelated from 'services/data/recipeWithRelated';
 import GetCommentableComments from 'services/data/getCommentableComments';
 
 import RecipeSave from 'services/form/recipeSave';
+import RecipeDelete from 'services/form/recipeDelete';
 import RecipeUpdate from 'services/form/recipeUpdate';
 import AddCommentableComment from 'services/form/addCommentableComment';
 
@@ -33,6 +34,13 @@ export function put ( req, res, next ) {
     serviceResponder( res, next, RecipeUpdate, {
         id: req.params.id,
         recipe: req.body,
+        userId: req.session.userId
+    } );
+}
+
+export function deleteRecipe ( req, res, next ) {
+    serviceResponder( res, next, RecipeDelete, {
+        id: req.params.id,
         userId: req.session.userId
     } );
 }

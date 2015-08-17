@@ -11,6 +11,7 @@ import './functional/api.oils.comments';
 import './functional/api.oils.get';
 
 import './functional/api.recipes.comments';
+import './functional/api.recipes.delete';
 import './functional/api.recipes.index';
 import './functional/api.recipes.get';
 import './functional/api.recipes.post';
