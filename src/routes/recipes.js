@@ -6,6 +6,7 @@ import {
     getRecipe,
     post,
     put,
+    deleteRecipe,
 
     getRecipeComments,
     addRecipeComments
@@ -19,7 +20,8 @@ router.route( '/' )
 
 router.route( '/:id' )
     .get( getRecipe )
-    .put( requiresAuthorisation, put );
+    .put( requiresAuthorisation, put )
+    .delete( requiresAuthorisation, deleteRecipe );
 
 router.route( '/:id/comments' )
     .get( getRecipeComments )
