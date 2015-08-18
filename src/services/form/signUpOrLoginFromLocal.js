@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Promise from 'bluebird';
 import bcrypt from 'bcrypt';
 
+import { Feedable } from 'models/feedable';
 import { User } from 'models/user';
 import { Verification } from 'models/verification';
 
@@ -22,11 +23,13 @@ export default class {
 
     execute() {
         return checkForLogin.call( this )
-            .then( setProcessType.bind( this ) )
-            .then( verifyForSignup.bind( this ) )
-            .then( doRegistrationIfSigningUp.bind( this ) )
-            .then( verifyPasswordIfLoggingIn.bind( this ) )
-            .then( returnUser.bind( this ) );
+            .bind( this )
+            .then( setProcessType )
+            .then( verifyForSignup )
+            .then( doRegistrationIfSigningUp )
+            .then( createFeedIfNewUser )
+            .then( verifyPasswordIfLoggingIn )
+            .then( returnUser );
     }
 }
 
@@ -112,6 +115,23 @@ function doRegistrationIfSigningUp() {
                 provider_id: this.username,
                 provider_name: 'local',
                 hash: hash
+            } )
+            .save();
+    }
+}
+
+function createFeedIfNewUser() {
+    if ( this.process === 'signup' ) {
+        return Feedable
+            .forge( {
+                feedable_id: this.user.get( 'id' ),
+                feedable_type: 'users',
+                feedable_meta: {
+                    user: {
+                        id: this.user.get( 'id' ),
+                        name: this.user.get( 'name' )
+                    }
+                }
             } )
             .save();
     }

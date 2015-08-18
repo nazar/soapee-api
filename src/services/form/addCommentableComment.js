@@ -1,6 +1,10 @@
+import _ from 'lodash';
 import sanitize from 'utils/sanitize';
 
+import InvalidPostData from 'exceptions/invalidPostData';
+
 import { Comment } from 'models/comment';
+import { Feedable } from 'models/feedable';
 import { UserNotification } from 'models/userNotification';
 
 export default class {
@@ -19,9 +23,11 @@ export default class {
         return getCommentable.call( this )
             .bind( this )
             .then( setCommentable )
+            .then( checkAgainstCommentsOnComments ) //turtles all the way down
             .then( sanitizeInputs )
             .then( addComment )
             .then( setComment )
+            .then( createFeedableEntryIfPublic )
             .then( createUserNotificationForRecipes )
             .then( returnComment );
     }
@@ -33,11 +39,19 @@ export default class {
 function getCommentable() {
     return this.commentableModel
         .forge( { id: this.commentableId } )
-        .fetch();
+        .fetch( {
+            require: true
+        } );
 }
 
 function setCommentable( commentable ) {
     this.commentable = commentable;
+}
+
+function checkAgainstCommentsOnComments() {
+    if ( (this.commentableType === 'feedables' ) && (this.commentable.get( 'feedable_type' ) === 'comments') ) {
+        throw new InvalidPostData( 'Cannot comment on a comment!' );
+    }
 }
 
 function sanitizeInputs() {
@@ -58,6 +72,38 @@ function addComment() {
 
 function setComment( comment ) {
     this.comment = comment;
+}
+
+function createFeedableEntryIfPublic() {
+
+    if ( this.commentableType === 'recipes' ) {
+        if ( Number( this.commentable.get( 'visibility' ) ) === 1 ) {
+            return createCommentFeedable.call( this );
+        }
+    } else if ( _.contains( [ 'oils' ], this.commentableType ) ) {
+        return createCommentFeedable.call( this );
+    }
+
+    function createCommentFeedable() {
+        return Feedable
+            .forge( {
+                feedable_id: this.comment.get( 'id' ),
+                feedable_type: 'comments',
+                feedable_meta: {
+                    user: {
+                        id: this.userId,
+                        name: this.comment.related( 'user' ).get( 'name' )
+                    },
+                    target: {
+                        id: this.commentable.get( 'id' ),
+                        name: this.commentable.get( 'name' ),
+                        actionType: 'commented'
+                    }
+                }
+            } )
+            .save();
+    }
+
 }
 
 function createUserNotificationForRecipes() {
