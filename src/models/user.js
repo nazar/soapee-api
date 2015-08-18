@@ -3,6 +3,7 @@ import bookshelf from 'db/bookshelf';
 import { Comment } from 'models/comment';
 import { Friendship } from 'models/friendship';
 import { Recipe } from 'models/recipe';
+import { StatusUpdate } from 'models/statusUpdate';
 import { UserNotification } from 'models/userNotification';
 import { Verification } from 'models/verification';
 
@@ -20,6 +21,10 @@ export let User = bookshelf.Model.extend( {
 
     recipes() {
         return this.hasMany( Recipe );
+    },
+
+    statusUpdates() {
+        return this.hasMany( StatusUpdate );
     },
 
     favouriteRecipes() {

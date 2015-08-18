@@ -2,17 +2,19 @@ import { User } from 'models/user';
 
 import UserProfile from 'services/data/userProfile';
 
+import FriendsAddUser from 'services/form/friendsAddUser';
+import FriendsRemoveUser from 'services/form/friendsRemoveUser';
+import StatusUpdate from 'services/form/statusUpdate';
 import UserAddRecipeToFavourites from 'services/form/userAddRecipeToFavourites';
 import UserNotificationsUpdate from 'services/form/userNotificationsUpdate';
 import UserNotificationsDelete from 'services/form/userNotificationsDelete';
 import UserRemoveRecipeFromFavourites from 'services/form/userRemoveRecipeFromFavourites';
 import UserUpdateProfile from 'services/form/userUpdateProfile';
-import FriendsAddUser from 'services/form/friendsAddUser';
-import FriendsRemoveUser from 'services/form/friendsRemoveUser';
 
 import UserComments from 'services/data/userComments';
 import UserFriendsRecipes from 'services/data/userFriendsRecipes';
 import UserNotifications from 'services/data/userNotifications';
+import UserStatusUpdates from 'services/data/userStatusUpdates';
 
 import modelJsonResponder from 'utils/modelJsonResponder';
 import serviceResponder from 'utils/serviceResponder';
@@ -147,6 +149,27 @@ export function  removeFriend( req, res, next ) {
     serviceResponder( res, next, FriendsRemoveUser, {
         currentUserId: req.session.userId,
         targetUserId: req.params.userId
+    } );
+}
+
+export function  myStatusUpdates( req, res, next ) {
+    serviceResponder( res, next, UserStatusUpdates, {
+        userId: req.session.userId
+    } );
+}
+
+export function  addStatusUpdate( req, res, next ) {
+    serviceResponder( res, next, StatusUpdate, {
+        userId: req.session.userId,
+        update: req.body.update
+    } );
+}
+
+export function  updateMyStatusUpdate( req, res, next ) {
+    serviceResponder( res, next, StatusUpdate, {
+        statusUpdateId: req.params.statusUpdateId,
+        userId: req.session.userId,
+        update: req.body.update
     } );
 }
 

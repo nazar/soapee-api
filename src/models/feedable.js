@@ -2,6 +2,7 @@ import bookshelf from 'db/bookshelf';
 
 import { Comment } from 'models/comment';
 import { Recipe } from 'models/recipe';
+import { StatusUpdate } from 'models/statusUpdate';
 import { User } from 'models/user';
 
 export let Feedable = bookshelf.Model.extend( {
@@ -9,7 +10,7 @@ export let Feedable = bookshelf.Model.extend( {
     hasTimestamps: true,
 
     feedable() {
-        return this.morphTo( 'feedable', Comment, Recipe, User );
+        return this.morphTo( 'feedable', Comment, Recipe, StatusUpdate, User );
     },
 
     comments() {

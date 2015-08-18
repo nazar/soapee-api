@@ -3,6 +3,7 @@ import bookshelf from 'db/bookshelf';
 import { Feedable } from 'models/feedable';
 import { Oil } from 'models/oil';
 import { Recipe } from 'models/recipe';
+import { StatusUpdate } from 'models/statusUpdate';
 import { User } from 'models/user';
 
 export let Comment = bookshelf.Model.extend( {
@@ -18,7 +19,7 @@ export let Comment = bookshelf.Model.extend( {
     },
 
     commentable() {
-        return this.morphTo( 'commentable', Recipe, Oil, Feedable );
+        return this.morphTo( 'commentable', Feedable, Oil, Recipe, StatusUpdate );
     }
 
 } );
