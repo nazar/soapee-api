@@ -85,6 +85,11 @@ function createFeedableEntryIfPublic() {
     }
 
     function createCommentFeedable() {
+        let targetTypes = {
+            recipes: 'recipe',
+            oils: 'oil'
+        };
+
         return Feedable
             .forge( {
                 feedable_id: this.comment.get( 'id' ),
@@ -97,7 +102,8 @@ function createFeedableEntryIfPublic() {
                     target: {
                         id: this.commentable.get( 'id' ),
                         name: this.commentable.get( 'name' ),
-                        actionType: 'commented'
+                        comment: this.comment,
+                        targetType: targetTypes[ this.commentableType ]
                     }
                 }
             } )
