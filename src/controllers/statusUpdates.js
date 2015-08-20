@@ -1,9 +1,17 @@
 import { StatusUpdate } from 'models/statusUpdate';
 
+import GetStatusUpdate from 'services/data/statusUpdate';
 import GetCommentableComments from 'services/data/getCommentableComments';
+
 import AddCommentableComment from 'services/form/addCommentableComment';
 
 import serviceResponder from 'utils/serviceResponder';
+
+export function getStatusUpdate( req, res, next ) {
+    serviceResponder( res, next, GetStatusUpdate, {
+        statusUpdateId: req.params.id
+    } );
+}
 
 export function getStatusUpdateComments( req, res, next ) {
     serviceResponder( res, next, GetCommentableComments, {

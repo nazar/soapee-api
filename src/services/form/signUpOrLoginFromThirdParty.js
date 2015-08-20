@@ -173,7 +173,8 @@ function createFeedableForNewUser() {
             feedable_meta: {
                 user: {
                     id: this.user.get( 'id' ),
-                    name: this.user.get( 'name' )
+                    name: this.user.get( 'name' ),
+                    image_url: this.user.get( 'image_url' )
                 }
             }
         } )

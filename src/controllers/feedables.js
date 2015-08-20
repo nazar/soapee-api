@@ -8,7 +8,9 @@ import AddCommentableComment from 'services/form/addCommentableComment';
 import serviceResponder from 'utils/serviceResponder';
 
 export function index( req, res, next ) {
-    serviceResponder( res, next, FeedablesList );
+    serviceResponder( res, next, FeedablesList, {
+        page: req.query.page
+    } );
 }
 
 export function getFeedableComments( req, res, next ) {

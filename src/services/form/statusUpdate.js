@@ -88,7 +88,8 @@ function createFeedableEntry() {
                 feedable_meta: {
                     user: {
                         id: this.statusUpdate.related( 'user' ).get( 'id' ),
-                        name: this.statusUpdate.related( 'user' ).get( 'name' )
+                        name: this.statusUpdate.related( 'user' ).get( 'name' ),
+                        image_url: this.statusUpdate.related( 'user' ).get( 'image_url' )
                     },
                     target: {
                         id: this.statusUpdate.get( 'id' ),

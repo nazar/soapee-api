@@ -30,6 +30,7 @@ function getRecipe() {
     return Recipe
         .forge( { id: this.id } )
         .fetch( {
+            require: true,
             withRelated: [ 'oils', 'user' ]
         } );
 }

@@ -73,7 +73,8 @@ function createFeedableEntryIfPublic() {
                 feedable_meta: {
                     user: {
                         id: this.recipe.related( 'user' ).get( 'id' ),
-                        name: this.recipe.related( 'user' ).get( 'name' )
+                        name: this.recipe.related( 'user' ).get( 'name' ),
+                        image_url: this.recipe.related( 'user' ).get( 'image_url' )
                     },
                     target: {
                         id: this.recipe.get( 'id' ),
