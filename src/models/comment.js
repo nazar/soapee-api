@@ -1,7 +1,9 @@
 import bookshelf from 'db/bookshelf';
 
+import { Feedable } from 'models/feedable';
 import { Oil } from 'models/oil';
 import { Recipe } from 'models/recipe';
+import { StatusUpdate } from 'models/statusUpdate';
 import { User } from 'models/user';
 
 export let Comment = bookshelf.Model.extend( {
@@ -12,12 +14,12 @@ export let Comment = bookshelf.Model.extend( {
         return this
             .belongsTo( User )
             .query( {
-                columns: [ 'id', 'name', 'image_url' ]
+                columns: [ 'id', 'name', 'image_url' ] //todo - remove, should be restricted in data object not in model
             } );
     },
 
     commentable() {
-        return this.morhphTo( 'commentable', Recipe, Oil );
+        return this.morphTo( 'commentable', Feedable, Oil, Recipe, StatusUpdate );
     }
 
 } );

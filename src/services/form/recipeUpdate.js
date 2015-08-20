@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import sanitize from 'utils/sanitize';
 
+import { Feedable, Feedables } from 'models/feedable';
 import { Recipe } from 'models/recipe';
 
 
@@ -22,8 +23,10 @@ export default class {
             .then( setRecipe )
             .then( sanitizeInputs )
             .then( saveAsNewForUserOrUpdateRecipe )
+            .then( fetchRecipeUser )
             .then( setRecipe )
             .then( buildRecipeOilsRelation )
+            .then( createFeedableEntryIfPublic )
             .then( returnRecipe );
     }
 }
@@ -63,9 +66,20 @@ function saveAsNewForUserOrUpdateRecipe() {
     }
 }
 
+function fetchRecipeUser( recipe ) {
+    return recipe.fetch( {
+        withRelated: [ 'user' ]
+    } );
+}
+
 function buildRecipeOilsRelation() {
 
-    function attachOils(){
+    return this.recipe.oils()
+        .detach()
+        .then( attachOils.bind( this ) );
+
+
+    function attachOils() {
         let pivot = _.map( this.payload.weights, ( weight, oilId ) => {
             return {
                 oil_id: oilId,
@@ -77,9 +91,64 @@ function buildRecipeOilsRelation() {
         return this.recipe.oils().attach( pivot );
     }
 
-    return this.recipe.oils()
-        .detach()
-        .then( attachOils.bind( this ) );
+
+}
+
+/**
+ * Creates a feedable entry if this recipe is public and the last three feedable entries do not contain this recipe
+ */
+function createFeedableEntryIfPublic() {
+
+    if ( Number( this.recipe.get( 'visibility' ) ) === 1 ) {
+        return lastFeedableEntries.call( this )
+            .then( createFeedable.bind( this ) );
+    }
+
+
+    function lastFeedableEntries() {
+        return Feedables
+            .query( qb => {
+                qb
+                    .select( 'id', 'feedable_id', 'feedable_type' )
+                    .orderBy( 'id', 'desc' )
+                    .limit( 3 );
+            } )
+            .fetch()
+            .then( filterAndExtractFeedableIds )
+    }
+
+    function filterAndExtractFeedableIds( rows ) {
+        return rows
+            .chain()
+            .filter( row => row.get( 'feedable_type' ) === 'recipes' )
+            .map( row => row.get( 'feedable_id' ) )
+            .value();
+    }
+
+    function createFeedable( previousFeedableIds ) {
+        if ( !(_.contains( previousFeedableIds, this.recipe.get( 'id' ) )) ) {
+            return Feedable
+                .forge( {
+                    feedable_id: this.recipe.get( 'id' ),
+                    feedable_type: 'recipes',
+                    feedable_meta: {
+                        user: {
+                            id: this.recipe.related( 'user' ).get( 'id' ),
+                            name: this.recipe.related( 'user' ).get( 'name' ),
+                            image_url: this.recipe.related( 'user' ).get( 'image_url' )
+                        },
+                        target: {
+                            id: this.recipe.get( 'id' ),
+                            name: this.recipe.get( 'name' ),
+                            actionType: 'updated recipe'
+                        }
+                    }
+                } )
+                .save();
+        }
+    }
+
+
 }
 
 function returnRecipe() {

@@ -13,7 +13,11 @@ import serviceResponder from 'utils/serviceResponder';
 
 
 export function index( req, res, next ) {
-    serviceResponder( res, next, RecipesList );
+    serviceResponder( res, next, RecipesList, {
+        page: req.query.page,
+        limit: req.query.limit,
+        offset: req.query.offset
+    } );
 }
 
 export function getRecipe( req, res, next ) {

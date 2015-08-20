@@ -107,6 +107,34 @@ describe( '/api', () => {
                     } );
             } );
 
+            it( 'should create a status update', done => {
+                agent
+                    .post( '/api/me/status-updates' )
+                    .send( {
+                        update: 'this is a status <script>123</script> update;.'
+                    } )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        console.log('body', res.body );
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should update a status update', done => {
+                agent
+                    .put( '/api/me/status-updates/1' )
+                    .send( {
+                        update: 'this is a status <script>123</script> updatezz;....'
+                    } )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        console.log('body', res.body );
+                        err ? done( err ) : done();
+                    } );
+            } );
+
         } );
 
         describe( 'Getting', () => {
@@ -201,6 +229,17 @@ describe( '/api', () => {
             it( 'should return my friends recipes', done => {
                 agent
                     .get( '/api/me/friends/recipes' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.be.Array();
+                        err ? done( err ) : done();
+                    } );
+            } );
+
+            it( 'should return my status updates', done => {
+                agent
+                    .get( '/api/me/status-updates' )
                     .expect( 'Content-Type', /json/ )
                     .expect( 200 )
                     .end( function ( err, res ) {

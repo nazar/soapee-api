@@ -2,6 +2,7 @@ import _ from 'lodash';
 import request from 'superagent';
 import Promise from 'bluebird';
 
+import { Feedable } from 'models/feedable';
 import { User } from 'models/user';
 import { Verification } from 'models/verification';
 
@@ -28,9 +29,10 @@ export default class {
 
     execute() {
         return requestUserDetails.call( this )
-            .then( setUserDetails.bind( this ) )
-            .then( lookupProviderVerification.bind( this ) )
-            .then( createUserAndVerificationIfRequired.bind( this ) );
+            .bind( this )
+            .then( setUserDetails )
+            .then( lookupProviderVerification )
+            .then( createUserAndVerificationIfRequired );
     }
 }
 
@@ -128,6 +130,7 @@ function createUserAndVerificationIfRequired( verification ) {
         return createUser.call( this )
             .then( setUser.bind( this ) )
             .then( createVerificationForUser.bind( this ) )
+            .then( createFeedableForNewUser.bind( this ) )
             .then( returnUser.bind( this ) );
 
 
@@ -158,6 +161,22 @@ function createVerificationForUser() {
             user_id: this.user.id,
             provider_name: this.provider,
             provider_id: this.userDetails.id
+        } )
+        .save();
+}
+
+function createFeedableForNewUser() {
+    return Feedable
+        .forge( {
+            feedable_id: this.user.get( 'id' ),
+            feedable_type: 'users',
+            feedable_meta: {
+                user: {
+                    id: this.user.get( 'id' ),
+                    name: this.user.get( 'name' ),
+                    image_url: this.user.get( 'image_url' )
+                }
+            }
         } )
         .save();
 }

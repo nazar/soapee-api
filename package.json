@@ -41,6 +41,7 @@
     },
     "devDependencies": {
         "babel-loader": "5.3.2",
+        "chalk": "1.1.1",
         "gulp": "3.9.0",
         "gulp-clean": "0.3.1",
         "gulp-mocha": "2.1.3",

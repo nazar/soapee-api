@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Promise from 'bluebird';
 import sanitize from 'utils/sanitize';
 
+import { Feedable } from 'models/feedable';
 import { Recipe } from 'models/recipe';
 
 export default class {
@@ -21,6 +22,7 @@ export default class {
             .then( saveRecipe )
             .then( setRecipe )
             .then( buildRecipeOilsRelation )
+            .then( createFeedableEntryIfPublic )
             .then( returnRecipe );
     }
 }
@@ -38,7 +40,8 @@ function saveRecipe() {
 
     return Recipe
         .forge( payload )
-        .save();
+        .save()
+        .then( recipe => recipe.fetch( { withRelated: 'user' } ) );
 }
 
 function setRecipe( recipe ) {
@@ -47,7 +50,7 @@ function setRecipe( recipe ) {
 
 function buildRecipeOilsRelation() {
 
-    function relatedOils(){
+    function relatedOils() {
         return _.map( this.payload.weights, ( weight, oilId ) => {
             return {
                 oil_id: oilId,
@@ -59,6 +62,29 @@ function buildRecipeOilsRelation() {
 
     return this.recipe.oils()
         .attach( relatedOils.call( this ) );
+}
+
+function createFeedableEntryIfPublic() {
+    if ( Number( this.recipe.get( 'visibility' ) ) === 1 ) {
+        return Feedable
+            .forge( {
+                feedable_id: this.recipe.get( 'id' ),
+                feedable_type: 'recipes',
+                feedable_meta: {
+                    user: {
+                        id: this.recipe.related( 'user' ).get( 'id' ),
+                        name: this.recipe.related( 'user' ).get( 'name' ),
+                        image_url: this.recipe.related( 'user' ).get( 'image_url' )
+                    },
+                    target: {
+                        id: this.recipe.get( 'id' ),
+                        name: this.recipe.get( 'name' ),
+                        actionType: 'added a new recipe'
+                    }
+                }
+            } )
+            .save();
+    }
 }
 
 function returnRecipe() {

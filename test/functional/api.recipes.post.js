@@ -24,13 +24,16 @@ describe( '/api', () => {
                         name: '213213123',
                         description: 'test description 1 2 3 4 5',
                         notes: `&#60&#115&#99&#114&#105&#112&#116&#62&#97&#108&#101&#114&#116&#60&#47&#115&#99&#114&#105&#112&#116&#62`,
-                        kohPurity: 90,
-                        soapType: 'noah',
-                        superFat: 5,
-                        totalUom: 'gram',
-                        totalWeight: 500,
-                        uom: 'gram',
-                        waterRatio: 38,
+                        visibility: 0,
+                        settings: {
+                            kohPurity: 90,
+                            soapType: 'noah',
+                            superFat: 5,
+                            totalUom: 'gram',
+                            totalWeight: 500,
+                            uom: 'gram',
+                            waterRatio: 38
+                        },
                         oils: [ 1, 2 ],
                         weights: { 1: '1', 2: '2' },
                         summary: {

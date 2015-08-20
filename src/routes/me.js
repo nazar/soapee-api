@@ -22,7 +22,11 @@ import {
     myFriendsPendingOutgoing,
     myFriendsRecipes,
     addFriend,
-    removeFriend
+    removeFriend,
+
+    myStatusUpdates,
+    addStatusUpdate,
+    updateMyStatusUpdate
 } from 'controllers/me';
 
 let router = Router();
@@ -71,5 +75,11 @@ router.route('/notifications/:id')
 router.route('/recipes')
     .get( myRecipes );
 
+router.route('/status-updates')
+    .get( myStatusUpdates )
+    .post( addStatusUpdate );
+
+router.route('/status-updates/:statusUpdateId')
+    .put( updateMyStatusUpdate );
 
 export default router;

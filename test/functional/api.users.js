@@ -65,6 +65,24 @@ describe( '/api', () => {
         } );
 
 
+        describe( 'GET /users/:id/status-updates', () => {
+
+            it( 'should return user status updates', done => {
+                request( app )
+                    .get( '/api/users/1/status-updates' )
+                    .expect( 'Content-Type', /json/ )
+                    .expect( 200 )
+                    .end( function ( err, res ) {
+                        res.body.should.be.Array();
+
+                        err ? done( err ) : done();
+                    } );
+
+            } );
+
+        } );
+
+
     } );
 } );
 
