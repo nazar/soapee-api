@@ -1,10 +1,14 @@
 import _ from 'lodash';
 import path from 'path';
+import fs from 'fs';
+import Promise from 'bluebird';
 import bookshelf from 'db/bookshelf';
 
 import { Recipe } from 'models/recipe';
 import { StatusUpdate } from 'models/statusUpdate';
 import { User } from 'models/user';
+
+import config from 'config';
 
 export let Image = bookshelf.Model.extend( {
     tableName: 'images',
@@ -14,6 +18,18 @@ export let Image = bookshelf.Model.extend( {
         path() {
             return path.join( this.get( 'imageable_type' ), Image.partitionId( this.get( 'imageable_id' ) ) );
         }
+    },
+
+    initialize: function () {
+        this.on( 'destroying', this.deleteFiles );
+    },
+
+    deleteFiles() {
+        let unlink = Promise.promisify( fs.unlink );
+        let imagePath = path.join( config.images.base, this.get( 'path' ) );
+
+        return unlink( path.join( imagePath, this.get( 'file_name' ) ) )
+            .then( () => unlink( path.join( imagePath, 'thumb-' + this.get( 'file_name' ) ) ) );
     },
 
     user() {
