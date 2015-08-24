@@ -26,6 +26,7 @@ function getStatusUpdate() {
         .fetch( {
             require: true,
             withRelated: [
+                'images',
                 {
                     user: qb => {
                         qb.select( 'id', 'name', 'image_url' )

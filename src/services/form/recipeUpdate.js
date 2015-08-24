@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import sanitize from 'utils/sanitize';
+import Promise from 'bluebird';
 
 import { Feedable, Feedables } from 'models/feedable';
+import { Image } from 'models/image';
 import { Recipe } from 'models/recipe';
 
 
@@ -12,6 +14,8 @@ export default class {
         this.payload = _.extend( {}, payload.recipe, {
             user_id: Number( payload.userId )
         } );
+        this.payload = _.omit( this.payload, 'deleting' );
+        this.deleting = payload.recipe.deleting;
 
         this.recipe = null;
         this.recipeOils = null;
@@ -27,6 +31,7 @@ export default class {
             .then( setRecipe )
             .then( buildRecipeOilsRelation )
             .then( createFeedableEntryIfPublic )
+            .then( deleteImagesIfRequired )
             .then( returnRecipe );
     }
 }
@@ -148,7 +153,23 @@ function createFeedableEntryIfPublic() {
         }
     }
 
+}
 
+function deleteImagesIfRequired() {
+    console.log('length', _.get( this.deleting, 'imageables.length' ) );
+    if ( _.get( this.deleting, 'imageables.length' ) ) {
+        return Promise.resolve( this.deleting.imageables )
+            .each( deleteImageable )
+    }
+
+    function deleteImageable( imageableId ) {
+        return Image
+            .forge( {
+                id: imageableId
+            } )
+            .fetch()
+            .then( image => image.destroy() )
+    }
 }
 
 function returnRecipe() {

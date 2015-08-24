@@ -20,5 +20,8 @@
     "sessionStore": {
         "secret": "is it secret? is it safe?",
         "cookieMaxAge": null
+    },
+    "images": {
+        "base": "/home/vagrant/uploads/imageables"
     }
 }

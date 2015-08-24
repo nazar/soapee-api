@@ -1,6 +1,7 @@
 import bookshelf from 'db/bookshelf';
 
 import { Comment } from 'models/comment';
+import { Image } from 'models/image';
 import { User } from 'models/user';
 
 export let StatusUpdate = bookshelf.Model.extend( {
@@ -13,6 +14,10 @@ export let StatusUpdate = bookshelf.Model.extend( {
 
     comments() {
         return this.morphMany( Comment, 'commentable' );
+    },
+
+    images() {
+        return this.morphMany( Image, 'imageable' );
     }
 
 } );

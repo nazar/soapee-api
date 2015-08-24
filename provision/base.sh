@@ -34,3 +34,7 @@ sudo apt-get install -y postgresql-9.4
 # create vagrant user and DB for development env
 sudo -u postgres bash -c "psql -c \"CREATE USER vagrant WITH PASSWORD 'vagrant';\""
 sudo -u postgres bash -c "psql -c \"CREATE DATABASE soapee OWNER vagrant;\""
+
+# install GraphicsMagic
+
+sudo apt-get install  graphicsmagick
