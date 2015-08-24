@@ -27,7 +27,7 @@ function getUserStatusUpdates() {
                 statusUpdates: qb => {
                     qb.orderBy( 'updated_at', 'desc' )
                 }
-            } ]
+            }, 'statusUpdates.images']
         } );
 }
 
