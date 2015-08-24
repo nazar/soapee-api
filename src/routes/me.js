@@ -24,9 +24,7 @@ import {
     addFriend,
     removeFriend,
 
-    myStatusUpdates,
-    addStatusUpdate,
-    updateMyStatusUpdate
+    myStatusUpdates
 } from 'controllers/me';
 
 let router = Router();
@@ -76,10 +74,6 @@ router.route('/recipes')
     .get( myRecipes );
 
 router.route('/status-updates')
-    .get( myStatusUpdates )
-    .post( addStatusUpdate );
-
-router.route('/status-updates/:statusUpdateId')
-    .put( updateMyStatusUpdate );
+    .get( myStatusUpdates );
 
 export default router;

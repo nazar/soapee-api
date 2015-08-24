@@ -157,19 +157,3 @@ export function  myStatusUpdates( req, res, next ) {
         userId: req.session.userId
     } );
 }
-
-export function  addStatusUpdate( req, res, next ) {
-    serviceResponder( res, next, StatusUpdate, {
-        userId: req.session.userId,
-        update: req.body.update
-    } );
-}
-
-export function  updateMyStatusUpdate( req, res, next ) {
-    serviceResponder( res, next, StatusUpdate, {
-        statusUpdateId: req.params.statusUpdateId,
-        userId: req.session.userId,
-        update: req.body.update
-    } );
-}
-
