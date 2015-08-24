@@ -22,6 +22,6 @@
         "cookieMaxAge": null
     },
     "images": {
-        "base": "/home/vagrant/uploads"
+        "base": "/home/vagrant/uploads/imageables"
     }
 }

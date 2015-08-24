@@ -1,6 +1,7 @@
 import bookshelf from 'db/bookshelf';
 
 import { Comment } from 'models/comment';
+import { Image } from 'models/image';
 import { Oil } from 'models/oil';
 import { User } from 'models/user';
 
@@ -21,6 +22,10 @@ export let Recipe = bookshelf.Model.extend( {
 
     comments() {
         return this.morphMany( Comment, 'commentable' );
+    },
+
+    images() {
+        return this.morphMany( Image, 'imageable' );
     }
 
 } );

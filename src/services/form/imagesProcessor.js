@@ -15,13 +15,15 @@ export default class {
         this.payload = options.payload;
         this.file = options.file;
 
-        this.newFileName = this.file.originalname;
-        this.newPath;
+        this.destination = null;
+        this.image = null;
     }
 
     execute() {
-        return createOutputPath.call( this )
+        return Promise.method( setupImage ).call( this )
             .bind( this )
+            .then( setImage )
+            .then( createOutputPath )
             .then( convert )
             .then( setNewPath )
             .then( createOutputPath )
@@ -34,17 +36,32 @@ export default class {
 ////////////////////
 ///// private
 
+function setupImage() {
+    return Image
+        .forge( {
+            user_id: this.userId,
+            imageable_id: this.payload.imageable_id,
+            imageable_type: this.payload.imageable_type,
+            file_name: this.file.originalname
+        } );
+}
+
+function setImage( image ) {
+    this.image = image;
+}
+
 function createOutputPath() {
     return Promise.promisify( mkdirp )( getPathFor.call( this ) );
 }
 
 function convert() {
     return new Promise( ( resolve, reject ) => {
-        let newPath = getPathFor.call( this, this.newFileName );
+        let newPath = getPathFor.call( this, this.file.originalname );
 
         gm( this.file.path )
             .noProfile()
             .resize( 640, 480 )
+            .quality( 80 )
             .write( newPath, e => {
                 if ( e ) {
                     reject( e );
@@ -56,15 +73,15 @@ function convert() {
 }
 
 function setNewPath( newPath ) {
-    this.newPath = newPath;
+    this.destination = newPath;
 }
 
 function thumbnail() {
     return new Promise( ( resolve, reject ) => {
-        let thumbPath = getPathFor.call( this, 'thumb-' + this.newFileName );
+        let thumbPath = getPathFor.call( this, 'thumb-' + this.file.originalname );
 
-        gm( this.newPath )
-            .resize( 100, '100^' )
+        gm( this.destination )
+            .thumbnail( 100, '100^' )
             .gravity( 'Center' )
             .extent( 100, 100 )
             .write( thumbPath, e => {
@@ -78,14 +95,7 @@ function thumbnail() {
 }
 
 function saveToDB() {
-    return Image
-        .forge( {
-            user_id: this.userId,
-            imageable_id: this.payload.imageable_id,
-            imageable_type: this.payload.imageable_type,
-            file_name: this.newFileName
-        } )
-        .save()
+    return this.image.save()
 }
 
 function returnPath( imageable ) {
@@ -94,5 +104,5 @@ function returnPath( imageable ) {
 
 
 function getPathFor( name = '' ) {
-    return path.join( config.images.base, Image.partitionId( this.payload.imageable_id ), name )
+    return path.join( config.images.base, this.image.get( 'path' ), name )
 }

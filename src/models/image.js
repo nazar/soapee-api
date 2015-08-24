@@ -10,8 +10,10 @@ export let Image = bookshelf.Model.extend( {
     tableName: 'images',
     hasTimestamps: true,
 
-    path() {
-        return path.join( 'public', 'images', this.get( 'imageable_type' ), Image.partitionId( this.get( 'id' ) ) );
+    virtuals: {
+        path() {
+            return path.join( this.get( 'imageable_type' ), Image.partitionId( this.get( 'imageable_id' ) ) );
+        }
     },
 
     user() {

@@ -6,12 +6,13 @@ var mocha = require( 'gulp-mocha' );
 var runSequence = require( 'run-sequence' );
 var clean = require( 'gulp-clean' );
 var shipitCaptain = require( 'shipit-captain' );
+var connect = require('gulp-connect');
 
 var devWebpackConfig = require( './webpack.dev' );
 var testWebpackConfig = require( './webpack.test' );
 var prodWebpackConfig = require( './webpack.prod' );
 
-gulp.task( 'default', [ 'run' ] );
+gulp.task( 'default', [ 'run', 'server:images' ] );
 
 gulp.task( 'build', function ( done ) {
     webpack( devWebpackConfig ).run( onBuild( done ) );
@@ -66,6 +67,14 @@ gulp.task( 'run', [ 'watch' ], function () {
     } ).on( 'restart', function () {
         console.log( 'Restarted!' );
     } );
+} );
+
+gulp.task( 'server:images', function () {
+    connect.server({
+        root: '../uploads',
+        host: '0.0.0.0',
+        port: 4000
+    });
 } );
 
 gulp.task( 'test', [ 'build:test' ], function () {
