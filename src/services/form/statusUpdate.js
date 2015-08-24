@@ -1,7 +1,9 @@
+import _ from 'lodash';
 import Promise from 'bluebird';
 import sanitize from 'utils/sanitize';
 
 import { Feedable } from 'models/feedable';
+import { Image } from 'models/image';
 import { StatusUpdate } from 'models/statusUpdate';
 
 export default class {
@@ -13,6 +15,7 @@ export default class {
             user_id: option.userId,
             update: option.update
         };
+        this.deleting = option.deleting;
 
         this.statusUpdate = null;
     }
@@ -54,8 +57,25 @@ function saveStatusUpdate() {
     }
 
     return update
-        .then( fetchUser );
+        .tap( deleteImageablesIfRequired.bind( this ) )
+        .then( fetchUser.bind( this ) );
 
+
+    function deleteImageablesIfRequired() {
+        if ( _.get( this.deleting, 'imageables.length' ) ) {
+            return Promise.resolve( this.deleting.imageables )
+                .each( deleteImageable.bind( this ) );
+        }
+    }
+
+    function deleteImageable( imageableId ) {
+        return Image
+            .forge( {
+                id: imageableId
+            } )
+            .fetch()
+            .then( image => image.destroy() )
+    }
 
     function fetchUser( statusUpdate ) {
         return StatusUpdate

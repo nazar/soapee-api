@@ -156,7 +156,7 @@ function createFeedableEntryIfPublic() {
 }
 
 function deleteImagesIfRequired() {
-    console.log('length', _.get( this.deleting, 'imageables.length' ) );
+
     if ( _.get( this.deleting, 'imageables.length' ) ) {
         return Promise.resolve( this.deleting.imageables )
             .each( deleteImageable )
