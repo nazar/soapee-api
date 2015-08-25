@@ -8,6 +8,11 @@ server {
     try_files $uri /index.html;
   }
 
+  # Uploaded imageables
+  location /imageables {
+    root /var/www/soapee.com/imageables;
+  }
+
   # the NodeJS API server
   location /api {
     #define NODE_ENV
