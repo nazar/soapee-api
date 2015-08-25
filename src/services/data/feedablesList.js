@@ -25,7 +25,7 @@ export default class {
 function getFeedCount() {
     return Feedable
         .query( qb => {
-            qb.count( 'id' )
+            qb.count( 'id' );
         } )
         .fetch();
 }
@@ -51,5 +51,5 @@ function returnFeed( feed ) {
     return {
         count: this.count.get( 'count' ),
         feed
-    }
+    };
 }

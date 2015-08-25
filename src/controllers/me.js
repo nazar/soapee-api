@@ -4,7 +4,6 @@ import UserProfile from 'services/data/userProfile';
 
 import FriendsAddUser from 'services/form/friendsAddUser';
 import FriendsRemoveUser from 'services/form/friendsRemoveUser';
-import StatusUpdate from 'services/form/statusUpdate';
 import UserAddRecipeToFavourites from 'services/form/userAddRecipeToFavourites';
 import UserNotificationsUpdate from 'services/form/userNotificationsUpdate';
 import UserNotificationsDelete from 'services/form/userNotificationsDelete';

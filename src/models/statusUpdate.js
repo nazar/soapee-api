@@ -9,7 +9,7 @@ export let StatusUpdate = bookshelf.Model.extend( {
     hasTimestamps: true,
 
     user() {
-        return this.belongsTo( User )
+        return this.belongsTo( User );
     },
 
     comments() {

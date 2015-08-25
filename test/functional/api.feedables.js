@@ -67,7 +67,7 @@ describe( '/api', () => {
                         } )
                         .expect( 'Content-Type', /json/ )
                         .expect( 422 )
-                        .end( function ( err, res ) {
+                        .end( function ( err ) {
                             err ? done( err ) : done();
                         } );
 
@@ -84,7 +84,7 @@ describe( '/api', () => {
                         } );
 
                 } );
-            } )
+            } );
 
         } );
 

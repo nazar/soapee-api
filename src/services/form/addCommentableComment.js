@@ -117,7 +117,7 @@ function createFeedableEntryIfPublic() {
         if ( this.commentableType === 'status_updates' ) {
             return 'status update';
         } else {
-            return this.commentable.get( 'name' )
+            return this.commentable.get( 'name' );
         }
     }
 

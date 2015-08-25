@@ -10,9 +10,9 @@ exports.up = function ( knex ) {
     } )
     .then(
         function() {
-            return knex.raw( 'ALTER TABLE friendships ADD CONSTRAINT friendships_prevent_duplicate_requests UNIQUE( user_id, friend_id )' )
+            return knex.raw( 'ALTER TABLE friendships ADD CONSTRAINT friendships_prevent_duplicate_requests UNIQUE( user_id, friend_id )' );
         }
-    )
+    );
 
 };
 

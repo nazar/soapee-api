@@ -61,7 +61,7 @@ function checkIfFriendshipExists() {
                 withRelated: [
                     {
                         friends: qb => {
-                            qb.where( { user_id: this.currentUserId } )
+                            qb.where( { user_id: this.currentUserId } );
                         }
                     }
                 ]
@@ -72,7 +72,7 @@ function checkIfFriendshipExists() {
                 if ( !(friends > 0) ) {
                     throw new NotAuthorisedError( 'Cannot view recipe as it is marked Private' );
                 }
-            } )
+            } );
     } else {
         throw new NotAuthorisedError( 'Cannot view recipe as it is marked Private' );
     }

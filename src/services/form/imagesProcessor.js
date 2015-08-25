@@ -68,8 +68,8 @@ function convert() {
                 } else {
                     resolve( newPath );
                 }
-            } )
-    } )
+            } );
+    } );
 }
 
 function setNewPath( newPath ) {
@@ -90,12 +90,12 @@ function thumbnail() {
                 } else {
                     resolve();
                 }
-            } )
-    } )
+            } );
+    } );
 }
 
 function saveToDB() {
-    return this.image.save()
+    return this.image.save();
 }
 
 function returnPath( imageable ) {
@@ -104,5 +104,5 @@ function returnPath( imageable ) {
 
 
 function getPathFor( name = '' ) {
-    return path.join( config.images.base, this.image.get( 'path' ), name )
+    return path.join( config.images.base, this.image.get( 'path' ), name );
 }

@@ -49,7 +49,7 @@ export let User = bookshelf.Model.extend( {
             .belongsToMany( User )
             .through( Friendship, 'friend_id', 'user_id' )
             .query( qb => {
-                qb.whereRaw( 'exists( select 1 from friendships f where f.friend_id = friendships.user_id and f.user_id = friendships.friend_id )' )
+                qb.whereRaw( 'exists( select 1 from friendships f where f.friend_id = friendships.user_id and f.user_id = friendships.friend_id )' );
             } );
     },
 
@@ -61,7 +61,7 @@ export let User = bookshelf.Model.extend( {
             .belongsToMany( User )
             .through( Friendship, 'friend_id', 'user_id' )
             .query( qb => {
-                qb.whereRaw( 'not exists( select 1 from friendships f where f.friend_id = friendships.user_id and f.user_id = friendships.friend_id )' )
+                qb.whereRaw( 'not exists( select 1 from friendships f where f.friend_id = friendships.user_id and f.user_id = friendships.friend_id )' );
             } );
     },
 
@@ -73,7 +73,7 @@ export let User = bookshelf.Model.extend( {
             .belongsToMany( User )
             .through( Friendship, 'user_id', 'friend_id' )
             .query( qb => {
-                qb.whereRaw( 'not exists( select 1 from friendships f where f.friend_id = friendships.user_id and f.user_id = friendships.friend_id )' )
+                qb.whereRaw( 'not exists( select 1 from friendships f where f.friend_id = friendships.user_id and f.user_id = friendships.friend_id )' );
             } );
     }
 

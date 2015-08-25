@@ -75,7 +75,7 @@ function saveStatusUpdate() {
                 imageable_id: statusUpdate.get( 'id' )
             } )
             .fetch()
-            .then( image => image.destroy() )
+            .then( image => image.destroy() );
     }
 
     function fetchRelated( statusUpdate ) {
@@ -87,11 +87,11 @@ function saveStatusUpdate() {
                 withRelated: [
                     {
                         user: qb => {
-                            qb.select( 'users.id', 'users.name' )
+                            qb.select( 'users.id', 'users.name' );
                         }
                     }
                 ]
-            } )
+            } );
     }
 }
 

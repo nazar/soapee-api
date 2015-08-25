@@ -26,7 +26,7 @@ export default function ( err, req, res, next ) {
         res.send( {
             message: 'Record not found',
             errorType: 'RecordNotFound'
-        } )
+        } );
     } else {
         res.status( 500 );
         res.send( {

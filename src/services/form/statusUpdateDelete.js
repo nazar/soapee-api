@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import bookshelf from 'db/bookshelf'
+import bookshelf from 'db/bookshelf';
 
 import { StatusUpdate } from 'models/statusUpdate';
 
@@ -70,7 +70,7 @@ function deleteStatusUpdateAssociations() {
 }
 
 function deleteStatusUpdate() {
-    return this.statusUpdate.destroy( { transacting: this.transaction } )
+    return this.statusUpdate.destroy( { transacting: this.transaction } );
 }
 
 function commit() {

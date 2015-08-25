@@ -25,13 +25,13 @@ function getRecipesCount() {
         .query( qb => {
             qb
                 .count( 'id' )
-                .where( { visibility: 1 } )
+                .where( { visibility: 1 } );
         } )
         .fetch();
 }
 
 function setCount( count ) {
-    this.count = count
+    this.count = count;
 }
 
 function getRecipes() {
@@ -56,5 +56,5 @@ function returnRecipes() {
     return {
         count: this.count.get( 'count' ),
         recipes: this.recipes
-    }
+    };
 }

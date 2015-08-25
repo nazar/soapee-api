@@ -33,6 +33,7 @@
         "no-labels": [2],
         "indent": 2,
         "vars-on-top": 2,
-        "camelcase": [2, {"properties": "never"}]
+        "camelcase": [2, {"properties": "never"}],
+        "semi": [2, "always"]
     }
 }

@@ -1,5 +1,3 @@
-import { Image } from 'models/image';
-
 import ImagesProcessor from 'services/form/imagesProcessor';
 
 import serviceResponder from 'utils/serviceResponder';
