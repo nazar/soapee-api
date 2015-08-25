@@ -25,7 +25,7 @@ function getUserStatusUpdates() {
             require: true,
             withRelated: [ {
                 statusUpdates: qb => {
-                    qb.orderBy( 'updated_at', 'desc' )
+                    qb.orderBy( 'updated_at', 'desc' );
                 }
             }, 'statusUpdates.images']
         } );

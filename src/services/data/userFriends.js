@@ -24,7 +24,7 @@ function getUserFriends() {
         .fetch( {
             withRelated: [ {
                 friends: qb => {
-                    qb.select( 'users.id', 'users.image_url', 'users.name' )
+                    qb.select( 'users.id', 'users.image_url', 'users.name' );
                 }
             } ]
         } );

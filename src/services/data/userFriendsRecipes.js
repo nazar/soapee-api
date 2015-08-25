@@ -30,7 +30,7 @@ function getUserFriendsWithRecipes() {
             withRelated: [
                 {
                     'friends.recipes': qb => {
-                        qb.orderBy( 'recipes.name' )
+                        qb.orderBy( 'recipes.name' );
                     }
                 }
             ]
@@ -42,8 +42,8 @@ function setRecipes( user ) {
         .related( 'friends' )
         .reduce( ( result, friend) => {
             return _.tap( result, r => {
-                friend.related( 'recipes' ).each( recipe => r.push( recipe ) )
-            } )
+                friend.related( 'recipes' ).each( recipe => r.push( recipe ) );
+            } );
         }, [] );
 }
 

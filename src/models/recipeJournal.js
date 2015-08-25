@@ -2,14 +2,14 @@ import bookshelf from 'db/bookshelf';
 
 import { Comment } from 'models/comment';
 import { Image } from 'models/image';
-import { User } from 'models/user';
+import { Recipe } from 'models/recipe';
 
-export let StatusUpdate = bookshelf.Model.extend( {
-    tableName: 'status_updates',
+export let RecipeJournal = bookshelf.Model.extend( {
+    tableName: 'recipe_journals',
     hasTimestamps: true,
 
-    user() {
-        return this.belongsTo( User );
+    recipes() {
+        return this.belongsTo( Recipe );
     },
 
     comments() {
@@ -22,6 +22,6 @@ export let StatusUpdate = bookshelf.Model.extend( {
 
 } );
 
-export let StatusUpdates = bookshelf.Collection.extend( {
-    model: StatusUpdate
+export let RecipeJournals = bookshelf.Collection.extend( {
+    model: RecipeJournal
 } );

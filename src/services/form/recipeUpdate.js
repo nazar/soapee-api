@@ -18,7 +18,6 @@ export default class {
         this.deleting = payload.recipe.deleting;
 
         this.recipe = null;
-        this.recipeOils = null;
     }
 
     execute() {
@@ -119,7 +118,7 @@ function createFeedableEntryIfPublic() {
                     .limit( 3 );
             } )
             .fetch()
-            .then( filterAndExtractFeedableIds )
+            .then( filterAndExtractFeedableIds );
     }
 
     function filterAndExtractFeedableIds( rows ) {
@@ -159,7 +158,7 @@ function deleteImagesIfRequired() {
 
     if ( _.get( this.deleting, 'imageables.length' ) ) {
         return Promise.resolve( this.deleting.imageables )
-            .each( deleteImageable )
+            .each( deleteImageable.bind( this ) );
     }
 
     function deleteImageable( imageableId ) {
@@ -169,7 +168,7 @@ function deleteImagesIfRequired() {
                 imageable_id: this.recipe.get( 'id' )
             } )
             .fetch()
-            .then( image => image.destroy() )
+            .then( image => image.destroy() );
     }
 }
 

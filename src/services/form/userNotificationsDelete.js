@@ -31,7 +31,7 @@ function getUserFromDatabase() {
                     userNotifications: qb => {
                         qb.where( {
                             id: Number( this.notificationId )
-                        } )
+                        } );
                     }
                 }
             ]
@@ -46,7 +46,7 @@ function deleteNotification() {
     let payload = _.extend( {}, this.payload );
 
     if ( payload.read ) {
-        payload.read_on = new Date()
+        payload.read_on = new Date();
     }
 
     // this.notifications is a collection with a single item as user has many userNotifications

@@ -37,7 +37,7 @@ describe( '/api', () => {
 
                 } );
 
-                it.only( 'should get feedable comments', done => {
+                it( 'should get feedable comments', done => {
                     agent
                         .get( '/api/status-updates/1/comments' )
                         .expect( 'Content-Type', /json/ )
@@ -48,7 +48,7 @@ describe( '/api', () => {
                         } );
 
                 } );
-            } )
+            } );
 
         } );
 

@@ -34,7 +34,7 @@ function getUserFromDatabase() {
                     userNotifications: qb => {
                         qb.where( {
                             id: Number( this.notificationId )
-                        } )
+                        } );
                     }
                 }
             ]
@@ -51,7 +51,7 @@ function updateNotification() {
     let payload = _.extend( {}, this.payload );
 
     if ( payload.read ) {
-        payload.read_on = new Date()
+        payload.read_on = new Date();
     }
 
     return this.notifications

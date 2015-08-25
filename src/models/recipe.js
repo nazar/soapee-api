@@ -3,6 +3,7 @@ import bookshelf from 'db/bookshelf';
 import { Comment } from 'models/comment';
 import { Image } from 'models/image';
 import { Oil } from 'models/oil';
+import { RecipeJournal } from 'models/recipeJournal';
 import { User } from 'models/user';
 
 export let Recipe = bookshelf.Model.extend( {
@@ -14,6 +15,10 @@ export let Recipe = bookshelf.Model.extend( {
             .query( {
                 columns: [ 'id', 'name', 'image_url' ]
             } );
+    },
+
+    recipeJournals() {
+        return this.hasMany( RecipeJournal );
     },
 
     oils() {

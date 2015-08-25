@@ -29,7 +29,7 @@ function getStatusUpdate() {
                 'images',
                 {
                     user: qb => {
-                        qb.select( 'id', 'name', 'image_url' )
+                        qb.select( 'id', 'name', 'image_url' );
                     }
                 }
             ]

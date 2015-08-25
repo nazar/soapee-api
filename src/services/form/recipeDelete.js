@@ -40,7 +40,7 @@ function setRecipe( recipe ) {
 
 function checkIfMyRecipe() {
     if ( Number( this.currentUserId ) !== Number( this.recipe.get( 'user_id' ) ) ) {
-        throw new NotAuthorisedError( 'Cannot delete: recipe owner mismatch.' )
+        throw new NotAuthorisedError( 'Cannot delete: recipe owner mismatch.' );
     }
 }
 

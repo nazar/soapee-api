@@ -22,7 +22,7 @@ export default class {
             .then( requestingOrApprovingFriendship )
             .then( notifyTargetUser )
             .then( returnFriendship )
-            .catch( checkForDuplicates )
+            .catch( checkForDuplicates );
     }
 }
 
