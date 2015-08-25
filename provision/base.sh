@@ -37,4 +37,4 @@ sudo -u postgres bash -c "psql -c \"CREATE DATABASE soapee OWNER vagrant;\""
 
 # install GraphicsMagic
 
-sudo apt-get install  graphicsmagick
+sudo apt-get install graphicsmagick

@@ -9,8 +9,8 @@ server {
   }
 
   # Uploaded imageables
-  location /imageables {
-    root /var/www/soapee.com/imageables;
+  location /imageables/ {
+    alias /var/www/soapee.com/imageables/;
   }
 
   # the NodeJS API server
