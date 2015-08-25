@@ -30,7 +30,7 @@ function getUser() {
                 comments: qb => {
                     qb.orderBy( 'created_at', 'desc' );
                 }
-            }]
+            }, 'comments.commentable' ]
         } );
 }
 
