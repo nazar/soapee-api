@@ -58,26 +58,27 @@ function saveStatusUpdate() {
 
     return update
         .tap( deleteImageablesIfRequired.bind( this ) )
-        .then( fetchUser.bind( this ) );
+        .then( fetchRelated.bind( this ) );
 
 
-    function deleteImageablesIfRequired() {
+    function deleteImageablesIfRequired( statusUpdate ) {
         if ( _.get( this.deleting, 'imageables.length' ) ) {
             return Promise.resolve( this.deleting.imageables )
-                .each( deleteImageable.bind( this ) );
+                .each( deleteImageable.bind( this, statusUpdate ) );
         }
     }
 
-    function deleteImageable( imageableId ) {
+    function deleteImageable( statusUpdate, imageableId ) {
         return Image
             .forge( {
-                id: imageableId
+                id: imageableId,
+                imageable_id: statusUpdate.get( 'id' )
             } )
             .fetch()
             .then( image => image.destroy() )
     }
 
-    function fetchUser( statusUpdate ) {
+    function fetchRelated( statusUpdate ) {
         return StatusUpdate
             .where( {
                 id: statusUpdate.get( 'id' )

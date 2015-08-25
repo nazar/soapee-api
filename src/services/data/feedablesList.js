@@ -3,7 +3,7 @@ import { Feedable, Feedables } from 'models/feedable';
 export default class {
 
     constructor( options = {} ) {
-        this.limit = options.limit || 20;
+        this.limit = options.limit || 15;
         this.offset = options.offset || this.limit * options.page;
 
         this.count = null;
@@ -42,7 +42,9 @@ function getFeed() {
                 .offset( this.offset )
                 .limit( this.limit );
         } )
-        .fetch();
+        .fetch( {
+            withRelated: 'feedable.images'
+        } );
 }
 
 function returnFeed( feed ) {
