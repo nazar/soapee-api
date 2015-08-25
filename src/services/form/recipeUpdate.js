@@ -165,7 +165,8 @@ function deleteImagesIfRequired() {
     function deleteImageable( imageableId ) {
         return Image
             .forge( {
-                id: imageableId
+                id: imageableId,
+                imageable_id: this.recipe.get( 'id' )
             } )
             .fetch()
             .then( image => image.destroy() )

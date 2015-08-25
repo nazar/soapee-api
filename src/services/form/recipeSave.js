@@ -11,6 +11,7 @@ export default class {
         this.payload = _.extend( {}, payload.recipe, {
             user_id: payload.userId
         } );
+        this.payload = _.omit( this.payload, 'deleting' );
 
         this.recipe = null;
         this.recipeOils = null;
