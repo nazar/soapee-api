@@ -8,6 +8,15 @@ import {
     put,
     deleteRecipe,
 
+    getRecipeJournal,
+    getRecipeJournals,
+    addRecipeJournal,
+    updateRecipeJournals,
+    deleteRecipeJournal,
+
+    getRecipeJournalComments,
+    addRecipeJournalComments,
+
     getRecipeComments,
     addRecipeComments
 } from 'controllers/recipes';
@@ -26,5 +35,18 @@ router.route( '/:id' )
 router.route( '/:id/comments' )
     .get( getRecipeComments )
     .post( requiresAuthorisation, addRecipeComments );
+
+router.route( '/:id/journals' )
+    .get( getRecipeJournals )
+    .post( requiresAuthorisation, addRecipeJournal );
+
+router.route( '/:id/journals/:recipeJournalId' )
+    .get( getRecipeJournal )
+    .put( requiresAuthorisation, updateRecipeJournals )
+    .delete( requiresAuthorisation, deleteRecipeJournal );
+
+router.route( '/:id/journals/:recipeJournalId/comments' )
+    .get( getRecipeJournalComments )
+    .post( addRecipeJournalComments );
 
 export default router;

@@ -5,6 +5,7 @@ import Promise from 'bluebird';
 import bookshelf from 'db/bookshelf';
 
 import { Recipe } from 'models/recipe';
+import { RecipeJournal } from 'models/recipeJournal';
 import { StatusUpdate } from 'models/statusUpdate';
 import { User } from 'models/user';
 
@@ -29,7 +30,8 @@ export let Image = bookshelf.Model.extend( {
         let imagePath = path.join( config.images.base, this.get( 'path' ) );
 
         return unlink( path.join( imagePath, this.get( 'file_name' ) ) )
-            .then( () => unlink( path.join( imagePath, 'thumb-' + this.get( 'file_name' ) ) ) );
+            .then( () => unlink( path.join( imagePath, 'thumb-' + this.get( 'file_name' ) ) ) )
+            .catch( () => {} );
     },
 
     user() {
@@ -38,7 +40,7 @@ export let Image = bookshelf.Model.extend( {
     },
 
     imageable() {
-        return this.morphTo( 'imageable', Recipe, StatusUpdate );
+        return this.morphTo( 'imageable', Recipe, RecipeJournal, StatusUpdate );
     }
 
 }, {
