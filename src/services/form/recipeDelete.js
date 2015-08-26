@@ -1,3 +1,6 @@
+import bookshelf from 'db/bookshelf';
+import Promise from 'bluebird';
+
 import NotAuthorisedError from 'exceptions/notAuthorised';
 
 import { Recipe } from 'models/recipe';
@@ -10,6 +13,7 @@ export default class {
         this.currentUserId = payload.userId;
 
         this.recipe = null;
+        this.transaction = null;
     }
 
     execute() {
@@ -17,8 +21,10 @@ export default class {
             .bind( this )
             .then( setRecipe )
             .then( checkIfMyRecipe )
-            .then( deleteRecipeAndOils )
-            .then( returnRecipe );
+            .then( startTransaction )
+            .then( deleteRecipeRelations )
+            .then( commit )
+            .then( done );
     }
 }
 
@@ -30,7 +36,7 @@ function getRecipeFromDatabase() {
         .forge( { id: this.id } )
         .fetch( {
             require: true,
-            withRelated: [ 'oils' ]
+            withRelated: [ 'comments', 'images', 'oils', 'recipeJournals.comments', 'recipeJournals.images' ]
         } );
 }
 
@@ -44,20 +50,68 @@ function checkIfMyRecipe() {
     }
 }
 
-function deleteRecipeAndOils() {
+function startTransaction() {
+    return new Promise( resolve => {
+        bookshelf.transaction( t => resolve( t ) );
+    } )
+        .then( transaction => this.transaction = transaction );
+}
+
+function deleteRecipeRelations() {
+
+    return deleteRecipeOils.call( this )
+        .bind( this )
+        .then( deleteComments )
+        .then( deleteImages )
+        .then( deleteJournalComments )
+        .then( deleteJournalImages )
+        .then( deleteJournals )
+        .then( deleteRecipe );
 
     function deleteRecipeOils() {
-        return this.recipe.oils().detach();
+        return this.recipe.oils().detach(null,  { transacting: this.transaction } );
+    }
+
+    function deleteComments() {
+        return this.recipe
+            .related( 'comments' )
+            .invokeThen( 'destroy', { transacting: this.transaction } );
+    }
+
+    function deleteImages() {
+        return this.recipe
+            .related( 'images' )
+            .invokeThen( 'destroy', { transacting: this.transaction } );
+    }
+
+    function deleteJournalImages() {
+        return this.recipe
+            .related( 'recipeJournals' )
+            .each( journal => journal.related( 'comments' ).invokeThen( 'destroy', { transacting: this.transaction } ) );
+    }
+
+    function deleteJournalComments() {
+        return this.recipe
+            .related( 'recipeJournals' )
+            .each( journal => journal.related( 'images' ).invokeThen( 'destroy', { transacting: this.transaction } ) );
+    }
+
+    function deleteJournals() {
+        return this.recipe
+            .related( 'recipeJournals' )
+            .invokeThen( 'destroy', { transacting: this.transaction } );
     }
 
     function deleteRecipe() {
-        return this.recipe.destroy();
+        return this.recipe.destroy( { transacting: this.transaction } );
     }
 
-    return deleteRecipeOils.call( this )
-        .then( deleteRecipe.bind( this ) );
 }
 
-function returnRecipe() {
+function commit() {
+    this.transaction.commit();
+}
+
+function done() {
     return true;
 }
