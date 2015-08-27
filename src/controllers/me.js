@@ -35,6 +35,7 @@ export function updateMyProfile( req, res, next ) {
     serviceResponder( res, next, UserUpdateProfile, {
         userId: req.session.userId,
         name: req.body.name,
+        email: req.body.email,
         about: req.body.about
     } );
 }

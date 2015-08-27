@@ -21,6 +21,8 @@ import './functional/api.recipes.put';
 
 import './functional/api.recipes.journals';
 
+import './functional/api.resets';
+
 import './functional/api.status_updates';
 
 import './functional/api.users';

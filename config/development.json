@@ -23,5 +23,10 @@
     },
     "images": {
         "base": "/home/vagrant/uploads/imageables"
+    },
+    "smtp": {
+        "host": "localhost",
+        "port": 1025,
+        "debug": true
     }
 }

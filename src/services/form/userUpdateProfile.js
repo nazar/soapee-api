@@ -7,6 +7,7 @@ export default class {
     constructor( payload ) {
         this.id = payload.userId;
         this.name = payload.name;
+        this.email = payload.email;
         this.about = payload.about || '';
 
         this.user = null;
@@ -43,17 +44,15 @@ function updateUser() {
     return this.user
         .save( {
             name: this.name,
+            email: this.email,
             about: this.about
         }, {
             patch: true
-        } );
+        } )
+        .then( u => this.user = u );
 }
 
 function returnUser() {
-    return {
-        name: this.user.get( 'name' ),
-        about: this.user.get( 'about' ),
-        image_url: this.user.get( 'image_url' )
-    };
+    return this.user;
 }
 
