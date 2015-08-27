@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import Promise from 'bluebird';
 import bcrypt from 'bcrypt';
+import nodemailer from 'nodemailer';
+import smtpTransport from 'nodemailer-smtp-transport';
 
 import { Feedable } from 'models/feedable';
 import { User } from 'models/user';
@@ -9,12 +11,14 @@ import { Verification } from 'models/verification';
 import SignupFields from 'services/validate/signupFields';
 
 import BadPasswordError from 'exceptions/badPassword';
+import config from 'config';
 
 export default class {
 
     constructor( payload ) {
         this.username = _.get( payload, 'userDetails.username' );
         this.password = _.get( payload, 'userDetails.password' );
+        this.email =    _.get( payload, 'userDetails.email' );
 
         this.process = null;
         this.verification = null;
@@ -28,6 +32,7 @@ export default class {
             .then( verifyForSignup )
             .then( doRegistrationIfSigningUp )
             .then( createFeedIfNewUser )
+            .then( sendWelcomeEmailIfPasswordSupplied )
             .then( verifyPasswordIfLoggingIn )
             .then( returnUser );
     }
@@ -91,6 +96,7 @@ function doRegistrationIfSigningUp() {
         return User
             .forge( {
                 name: this.username,
+                email: this.email,
                 last_logged_in: new Date()
             } )
             .save();
@@ -135,6 +141,47 @@ function createFeedIfNewUser() {
                 }
             } )
             .save();
+    }
+}
+
+function sendWelcomeEmailIfPasswordSupplied() {
+    let sendMail;
+    let transporter;
+
+    if ( this.process === 'signup' && this.email ) {
+        transporter = nodemailer.createTransport( smtpTransport( {
+            host: config.smtp.host,
+            port: config.smtp.port,
+            debug: config.smtp.debug,
+            secure: false,
+            ignoreTLS: true
+        } ) );
+
+        sendMail = Promise.promisify( transporter.sendMail, transporter );
+
+        return sendMail( {
+            from: 'noreply@soapee.com',
+            to: this.email,
+            subject: 'SOAPEE.COM - Registration Details',
+            text: text.call( this )
+        } );
+
+    }
+
+    function text() {
+        return `Thank you for signing up and welcome to http://soapee.com
+
+        Please keep this email safe as it contains your registration username and password.
+
+        Your login details are:
+
+          username: ${this.username}
+          password: ${this.password}
+
+        Please follow us on either Facebook ( https://www.facebook.com/soapeepage ) or Reddit ( https://www.reddit.com/r/soapee ) for Soapee news and updates.
+
+        I hope you enjoy Soapee.com.
+        `;
     }
 }
 

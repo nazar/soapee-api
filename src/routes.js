@@ -6,6 +6,7 @@ import imageable from 'routes/imageable';
 import me from 'routes/me';
 import oils from 'routes/oils';
 import recipes from 'routes/recipes';
+import resets from 'routes/resets';
 import statusUpdates from 'routes/statusUpdates';
 import users from 'routes/users';
 
@@ -17,6 +18,7 @@ router.use( '/imageable', imageable );
 router.use( '/me', me );
 router.use( '/oils', oils );
 router.use( '/recipes', recipes );
+router.use( '/resets', resets );
 router.use( '/status-updates', statusUpdates );
 router.use( '/users', users );
 

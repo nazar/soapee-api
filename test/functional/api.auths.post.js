@@ -42,7 +42,8 @@ describe( '/api', () => {
                         provider: 'local',
                         userDetails: {
                             username: 'test-user',
-                            password: 'test-password'
+                            password: 'test-password',
+                            email: 'test@test.com'
                         }
                     } )
                     .expect( 'Content-Type', /json/ )

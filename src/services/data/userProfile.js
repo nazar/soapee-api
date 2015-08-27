@@ -25,7 +25,6 @@ function getUser() {
             id: this.userId
         } )
         .fetch( {
-            columns: [ 'id', 'name', 'image_url', 'about' ],
             withRelated: [
                 {
                     verifications: qb => {

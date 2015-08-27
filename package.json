@@ -37,6 +37,8 @@
         "morgan": "1.6.1",
         "moment": "2.10.6",
         "multer": "1.0.3",
+        "nodemailer": "1.4.0",
+        "nodemailer-smtp-transport": "1.0.3",
         "pg": "4.4.1",
         "sanitize-html": "1.9.0",
         "source-map-support": "0.3.2",
