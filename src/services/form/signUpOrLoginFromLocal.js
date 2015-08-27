@@ -169,18 +169,19 @@ function sendWelcomeEmailIfPasswordSupplied() {
     }
 
     function text() {
-        return `Thank you for signing up and welcome to http://soapee.com
+        return `
+Thank you for signing up and welcome to http://soapee.com
 
-        Please keep this email safe as it contains your registration username and password.
+Please keep this email safe as it contains your registration username and password.
 
-        Your login details are:
+Your login details are:
 
-          username: ${this.username}
-          password: ${this.password}
+  username: ${this.username}
+  password: ${this.password}
 
-        Please follow us on either Facebook ( https://www.facebook.com/soapeepage ) or Reddit ( https://www.reddit.com/r/soapee ) for Soapee news and updates.
+Please follow us on either Facebook ( https://www.facebook.com/soapeepage ) or Reddit ( https://www.reddit.com/r/soapee ) for Soapee news and updates.
 
-        I hope you enjoy Soapee.com.
+I hope you enjoy Soapee.com.
         `;
     }
 }
