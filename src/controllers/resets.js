@@ -2,7 +2,6 @@ import ResetsSendVerificationEmail from 'services/form/resetsSendVerificationEma
 import ResetsVerifyResetCode from 'services/form/resetsVerifyResetCode';
 import ResetsResetPassword from 'services/form/resetsResetPassword';
 
-import promiseResponder from 'utils/promiseResponder';
 import serviceResponder from 'utils/serviceResponder';
 
 
