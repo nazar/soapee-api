@@ -106,8 +106,8 @@ function sendConfirmationEmail() {
     } );
 
     function text() {
-        return `
-The password reset was successful.
+        return (
+`The password reset was successful.
 
 Please keep this email safe as it contains your new password.
 
@@ -115,7 +115,8 @@ Your login details are:
 
   username: ${this.verification.get( 'provider_id' )}
   password: ${this.password}
-        `;
+`
+        );
     }
 }
 
