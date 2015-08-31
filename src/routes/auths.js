@@ -1,6 +1,13 @@
 import { Router } from 'express';
 
-import { login, post, currentUser, logout, usernameExists } from 'controllers/auths';
+import {
+    login,
+    post,
+    currentUser,
+    logout,
+    usernameExists,
+    emailExists
+} from 'controllers/auths';
 
 import requiresAuthorisation from 'middleware/requiresAuthorisation';
 
@@ -20,5 +27,8 @@ router.route('/current-user' )
 
 router.route('/users/:username/exists' )
     .get( usernameExists );
+
+router.route('/users/:email/email' )
+    .get( emailExists );
 
 export default router;
