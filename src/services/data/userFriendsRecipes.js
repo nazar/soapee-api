@@ -33,7 +33,8 @@ function getUserFriendsWithRecipes() {
                         qb.where( 'recipes.visibility', '>', 0 );
                         qb.orderBy( 'recipes.name' );
                     }
-                }
+                },
+                'friends.recipes.user'
             ]
         } );
 }
