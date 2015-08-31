@@ -18,7 +18,7 @@ export default class {
     constructor( payload ) {
         this.username = _.get( payload, 'userDetails.username' );
         this.password = _.get( payload, 'userDetails.password' );
-        this.email =    _.get( payload, 'userDetails.email' );
+        this.email = _.get( payload, 'userDetails.email' );
 
         this.process = null;
         this.verification = null;
@@ -169,8 +169,8 @@ function sendWelcomeEmailIfPasswordSupplied() {
     }
 
     function text() {
-        return `
-Thank you for signing up and welcome to http://soapee.com
+        return (
+`Thank you for signing up and welcome to http://soapee.com
 
 Please keep this email safe as it contains your registration username and password.
 
@@ -181,8 +181,8 @@ Your login details are:
 
 Please follow us on either Facebook ( https://www.facebook.com/soapeepage ) or Reddit ( https://www.reddit.com/r/soapee ) for Soapee news and updates.
 
-I hope you enjoy Soapee.com.
-        `;
+I hope you enjoy Soapee.com.`
+        );
     }
 }
 

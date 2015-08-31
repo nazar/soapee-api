@@ -30,6 +30,7 @@ function getUserFriendsWithRecipes() {
             withRelated: [
                 {
                     'friends.recipes': qb => {
+                        qb.where( 'recipes.visibility', '>', 0 );
                         qb.orderBy( 'recipes.name' );
                     }
                 }

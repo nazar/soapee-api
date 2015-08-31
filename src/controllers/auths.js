@@ -4,6 +4,7 @@ import loginFromLocal from 'services/form/loginFromLocal';
 
 import UserFromSession from 'services/data/userFromSession';
 import LocalUsernameExists from 'services/data/localUsernameExists';
+import LocalEmailExists from 'services/data/localEmailExists';
 
 import promiseResponder from 'utils/promiseResponder';
 import serviceResponder from 'utils/serviceResponder';
@@ -59,6 +60,10 @@ export function logout( req, res ) {
 
 export function usernameExists( req, res, next ) {
     serviceResponder( res, next, LocalUsernameExists, req.params );
+}
+
+export function emailExists( req, res, next ) {
+    serviceResponder( res, next, LocalEmailExists, req.params );
 }
 
 /////////////////
