@@ -1,4 +1,4 @@
-# !/usr/bin/env bash
+#!/usr/bin/env bash
 
 # install dependencies
 sudo apt-get update
@@ -30,7 +30,7 @@ sudo npm install -g maildev@0.12.0
 
 # install Postgres 9.4
 
-sudo apt-get install -y postgresql-9.4
+sudo apt-get install -y --force-yes postgresql-9.4
 
 # create vagrant user and DB for development env
 sudo -u postgres bash -c "psql -c \"CREATE USER vagrant WITH PASSWORD 'vagrant';\""
@@ -38,4 +38,4 @@ sudo -u postgres bash -c "psql -c \"CREATE DATABASE soapee OWNER vagrant;\""
 
 # install GraphicsMagic
 
-sudo apt-get install graphicsmagick
+sudo apt-get -y install graphicsmagick
