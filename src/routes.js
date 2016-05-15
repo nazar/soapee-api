@@ -14,7 +14,7 @@ let router = new Router();
 
 router.use( '/auths', auths );
 router.use( '/feedables', feedables );
-router.use( '/imageable', imageable );
+//router.use( '/imageable', imageable );
 router.use( '/me', me );
 router.use( '/oils', oils );
 router.use( '/recipes', recipes );

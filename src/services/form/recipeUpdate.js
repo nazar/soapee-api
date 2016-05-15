@@ -2,6 +2,8 @@ import _ from 'lodash';
 import sanitize from 'utils/sanitize';
 import Promise from 'bluebird';
 
+import CanCreatePublicRecipe from 'services/validate/canCreatePublicRecipe';
+
 import { Feedable, Feedables } from 'models/feedable';
 import { Image } from 'models/image';
 import { Recipe } from 'models/recipe';
@@ -24,6 +26,7 @@ export default class {
         return getRecipeFromDatabase.call( this )
             .bind( this )
             .then( setRecipe )
+            .then( checkCanCreatePublic )
             .then( sanitizeInputs )
             .then( saveAsNewForUserOrUpdateRecipe )
             .then( fetchRecipeUser )
@@ -46,6 +49,14 @@ function getRecipeFromDatabase() {
 
 function setRecipe( recipe ) {
     this.recipe = recipe;
+}
+
+function checkCanCreatePublic() {
+    let validation = new CanCreatePublicRecipe({
+        recipe: this.payload
+    });
+
+    return validation.execute();
 }
 
 function sanitizeInputs() {

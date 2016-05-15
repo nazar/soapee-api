@@ -13,8 +13,7 @@ Vagrant.configure(2) do |config|
   #RSYNC based one-way file sharing
   config.vm.synced_folder ".", "/home/vagrant/files",
     type: "rsync",
-    rsync__exclude: [".git/", "node_modules", ".idea"],
-    rsync__auto: false
+    rsync__exclude: [".git/", "node_modules", ".idea"]
 
   config.vm.provider "virtualbox" do |vb|
       # Customize the amount of memory on the VM:

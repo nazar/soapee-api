@@ -13,7 +13,8 @@ export default function ( err, req, res, next ) {
             'InvalidPostData',
             'BadPasswordError',
             'RecordNotFoundError',
-            'NotAuthorisedError'
+            'NotAuthorisedError',
+            'NeedsSocialAccount'
         ], err.name ) ) {
 
         res.status( err.status );
