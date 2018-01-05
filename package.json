@@ -35,7 +35,7 @@
         "knex": "0.8.6",
         "mkdirp": "0.5.1",
         "morgan": "1.6.1",
-        "moment": "2.10.6",
+        "moment": "2.11.2",
         "multer": "1.0.3",
         "nodemailer": "1.4.0",
         "nodemailer-smtp-transport": "1.0.3",
