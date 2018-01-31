@@ -56,7 +56,7 @@ function checkIfIsLocal() {
         throw new InvalidPostData( 'The Email address id required' );
     }
 
-    if ( this.user.related( 'verifications' ).size === 0 ) {
+    if ( this.user.related( 'verifications' ).length === 0 ) {
         throw new RecordNotFound( 'Not registered using username or password. Try social login instead.' );
     }
 }
